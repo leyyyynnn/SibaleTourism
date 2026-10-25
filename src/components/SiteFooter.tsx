@@ -7,33 +7,6 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-pine-950 text-white/75">
-      {/* Government identity band: official seal and Bagong Pilipinas logo */}
-      <div className="border-b border-pine-900/10 bg-white text-pine-950">
-        <div className="container-site flex flex-col items-center gap-6 py-6 sm:flex-row sm:justify-between">
-          <div className="flex items-center gap-4 text-center sm:text-left">
-            <Image
-              src="/images/logos/concepcion-seal.png"
-              alt="Official Seal of the Municipality of Concepcion"
-              width={96}
-              height={96}
-              className="h-20 w-20 shrink-0 sm:h-24 sm:w-24"
-            />
-            <div className="leading-tight">
-              <p className="text-[0.68rem] font-semibold tracking-[0.18em] text-muted uppercase">Republic of the Philippines</p>
-              <p className="mt-1 text-[0.68rem] font-semibold tracking-[0.18em] text-muted uppercase">Province of Romblon</p>
-              <p className="mt-1 text-base font-bold text-pine-950">Municipality of Concepcion</p>
-            </div>
-          </div>
-          <Image
-            src="/images/logos/bagong-pilipinas.png"
-            alt="Bagong Pilipinas"
-            width={600}
-            height={559}
-            className="h-[104px] w-auto sm:h-[124px]"
-          />
-        </div>
-      </div>
-
       <div className="container-site grid gap-12 py-16 md:grid-cols-12 lg:py-20">
         <div className="md:col-span-5">
           <Link href="/" className="inline-block text-white" aria-label="Sibale Tourism — home">
@@ -43,6 +16,27 @@ export function SiteFooter() {
             The tourism guide to Concepcion, Romblon — Sibale Island in the Verde Island Passage. Nine barangays, one island, MIMAROPA, Philippines.
           </p>
           <p className="mt-4 text-xs tracking-[0.2em] text-white/50">{site.coordinatesLabel}</p>
+
+          {/* Official emblems, shown at equal size as on government sites */}
+          <div className="mt-10 border-t border-white/10 pt-8">
+            <div className="flex items-center gap-4">
+              <Image
+                src="/images/logos/concepcion-seal.png"
+                alt="Official Seal of the Municipality of Concepcion"
+                width={80}
+                height={80}
+                className="h-[72px] w-[72px] shrink-0 sm:h-20 sm:w-20"
+              />
+              <span className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-white p-[11px] sm:h-20 sm:w-20 sm:p-3">
+                <Image src="/images/logos/bagong-pilipinas.png" alt="Bagong Pilipinas" width={600} height={559} className="h-auto w-full" />
+              </span>
+              <div className="ml-1 leading-tight">
+                <p className="text-[0.62rem] font-semibold tracking-[0.18em] text-white/50 uppercase">Republic of the Philippines</p>
+                <p className="mt-1 text-[0.62rem] font-semibold tracking-[0.18em] text-white/50 uppercase">Province of Romblon</p>
+                <p className="mt-1.5 text-sm font-semibold text-white">Municipality of Concepcion</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <nav aria-label="Footer" className="md:col-span-3">
