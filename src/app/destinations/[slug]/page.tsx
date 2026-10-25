@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DestinationCard } from "@/components/DestinationCard";
+import { Gallery } from "@/components/Gallery";
 import { ArrowUpRight, ChevronLeft, Pin } from "@/components/Icons";
 import { ButtonLink, PhotoSlot, SourceList, VerificationBadge } from "@/components/ui";
 import { destinations, getDestination } from "@/data/destinations";
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: d.name,
     description: d.summary,
-    openGraph: d.image ? { images: [{ url: d.image.src }] } : undefined,
+    openGraph: d.images[0] ? { images: [{ url: d.images[0].src }] } : undefined,
   };
 }
 
@@ -31,7 +32,7 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
 
   return (
     <article>
-      <header className="relative isolate overflow-hidden bg-ocean-950 text-white">
+      <header className="relative isolate overflow-hidden bg-pine-950 text-white">
         <div className="grid min-h-[34rem] lg:grid-cols-2">
           <div className="flex flex-col justify-end px-5 pt-36 pb-14 md:px-10 lg:pr-12 lg:pb-20 lg:pl-[max(2.5rem,calc((100vw-88rem)/2+2.5rem))]">
             <Link href={`/destinations?category=${d.category}`} className="mb-10 inline-flex items-center gap-1 text-sm text-white/70 hover:text-white">
@@ -39,14 +40,14 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
             </Link>
             <div className="flex flex-wrap items-center gap-3">
               <VerificationBadge status={d.verification} />
-              <span className="text-sm text-white/70">{d.barangay ? `Brgy. ${d.barangay}` : "Barangay to be confirmed"}</span>
+              <span className="text-sm text-white/70">{d.location ?? "Location to be confirmed"}</span>
             </div>
             <h1 className="display mt-5 text-5xl sm:text-6xl lg:text-7xl">{d.name}</h1>
             {d.altNames && <p className="mt-3 text-sm text-white/60">Also known as {d.altNames.join(", ")}</p>}
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">{d.summary}</p>
           </div>
           <PhotoSlot
-            image={d.image}
+            image={d.images[0]}
             label={d.name}
             brief={d.photoBrief}
             tone="ocean"
@@ -59,17 +60,17 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
 
       <div className="container-site grid gap-16 py-16 lg:grid-cols-12 lg:py-24">
         <div className="lg:col-span-7">
-          <h2 className="eyebrow mb-6 text-sea-600">About this place</h2>
-          <div className="prose-site max-w-2xl text-lg leading-relaxed text-charcoal/85">
+          <h2 className="eyebrow mb-6 text-pine-700">About this place</h2>
+          <div className="prose-site max-w-2xl text-lg leading-relaxed text-ink/85">
             {d.details.map((p) => (
               <p key={p}>{p}</p>
             ))}
           </div>
 
-          <h2 className="eyebrow mt-14 mb-6 text-sea-600">Visitor notes</h2>
-          <ul className="max-w-2xl divide-y divide-ocean-900/10 border-y border-ocean-900/10">
+          <h2 className="eyebrow mt-14 mb-6 text-pine-700">Visitor notes</h2>
+          <ul className="max-w-2xl divide-y divide-pine-900/10 border-y border-pine-900/10">
             {d.visitorNotes.map((n) => (
-              <li key={n} className="py-4 text-[0.98rem] leading-relaxed text-charcoal/85">
+              <li key={n} className="py-4 text-[0.98rem] leading-relaxed text-ink/85">
                 {n}
               </li>
             ))}
@@ -77,11 +78,11 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
         </div>
 
         <aside className="space-y-10 lg:col-span-5 lg:pl-8">
-          <div className="bg-sand-100 p-7">
+          <div className="bg-cream-100 p-7">
             <p className="eyebrow text-muted">Location</p>
             {d.coordinates ? (
               <>
-                <p className="mt-3 flex items-start gap-2 text-ocean-900">
+                <p className="mt-3 flex items-start gap-2 text-pine-900">
                   <Pin size={18} className="mt-0.5 shrink-0" />
                   <span className="tabular-nums">
                     {d.coordinates.lat.toFixed(4)}, {d.coordinates.lng.toFixed(4)}
@@ -93,7 +94,7 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
                   href={`https://www.openstreetmap.org/?mlat=${d.coordinates.lat}&mlon=${d.coordinates.lng}#map=15/${d.coordinates.lat}/${d.coordinates.lng}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-signal-600"
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-pine-900"
                 >
                   Open in OpenStreetMap <ArrowUpRight size={14} />
                   <span className="sr-only">(opens in a new tab)</span>
@@ -119,19 +120,28 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
 
           <SourceList ids={d.sources} />
 
-          {d.image && (
-            <p className="text-xs text-muted">
-              Photo: {d.image.credit}
-            </p>
-          )}
+          {d.images[0]?.credit && <p className="text-xs text-muted">Photos: {d.images[0].credit}</p>}
 
           <ButtonLink href="/travel-guide">Plan your visit</ButtonLink>
         </aside>
       </div>
 
-      <section aria-labelledby="more-heading" className="border-t border-ocean-900/10 bg-sand-100 py-16 lg:py-24">
+      {d.images.length > 1 && (
+        <section aria-labelledby="photos-heading" className="pb-16 lg:pb-24">
+          <div className="container-site">
+            <h2 id="photos-heading" className="eyebrow mb-8 text-pine-700">
+              Photos of {d.name}
+            </h2>
+            <Gallery
+              images={d.images.map((img) => ({ ...img, caption: img.alt, credit: img.credit ?? "" }))}
+            />
+          </div>
+        </section>
+      )}
+
+      <section aria-labelledby="more-heading" className="border-t border-pine-900/10 bg-cream-100 py-16 lg:py-24">
         <div className="container-site">
-          <h2 id="more-heading" className="display text-4xl text-ocean-900">
+          <h2 id="more-heading" className="display text-4xl text-pine-900">
             More to discover
           </h2>
           <ul className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">

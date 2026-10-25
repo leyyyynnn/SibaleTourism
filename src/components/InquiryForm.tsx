@@ -46,22 +46,22 @@ export function InquiryForm() {
 
   if (state.kind === "sent") {
     return (
-      <div role="status" className="border border-sea-500/40 bg-sea-100 p-8">
-        <p className="display text-3xl text-ocean-900">Thank you. Your inquiry is in.</p>
+      <div role="status" className="border border-lime-400/40 bg-cream-100 p-8">
+        <p className="display text-3xl text-pine-900">Thank you. Your inquiry is in.</p>
         <p className="mt-3 text-muted">
           {state.delivered
             ? "The Municipal Tourism Office will reply by email. Replies may take a few days, as connectivity on the island can be limited."
             : "Development mode: the inquiry was validated and logged on the server, but not delivered because no delivery endpoint is configured."}
         </p>
-        <button type="button" onClick={() => setState({ kind: "idle" })} className="mt-6 text-sm font-semibold text-signal-600 underline underline-offset-4">
+        <button type="button" onClick={() => setState({ kind: "idle" })} className="mt-6 text-sm font-semibold text-pine-900 underline underline-offset-4">
           Send another inquiry
         </button>
       </div>
     );
   }
 
-  const field = "mt-2 w-full rounded-md border bg-white px-4 py-3 text-ocean-900 focus:border-sea-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-sea-500";
-  const border = (k: keyof FieldErrors) => (errors[k] ? "border-[#b42318]" : "border-ocean-900/20");
+  const field = "mt-2 w-full rounded-md border bg-white px-4 py-3 text-pine-900 focus:border-lime-400 focus:outline-none focus-visible:outline-2 focus-visible:outline-lime-400";
+  const border = (k: keyof FieldErrors) => (errors[k] ? "border-[#b42318]" : "border-pine-900/20");
   const Err = ({ k }: { k: keyof FieldErrors }) =>
     errors[k] ? (
       <p id={`${k}-error`} className="mt-1.5 text-sm text-[#b42318]">
@@ -76,19 +76,19 @@ export function InquiryForm() {
   return (
     <form ref={formRef} onSubmit={onSubmit} noValidate className="space-y-6" aria-busy={state.kind === "submitting"}>
       <div className="grid gap-6 sm:grid-cols-2">
-        <label className="block text-sm font-medium text-ocean-900">
+        <label className="block text-sm font-medium text-pine-900">
           Your name <span className="text-muted">(required)</span>
           <input name="name" autoComplete="name" className={`${field} ${border("name")}`} {...a11y("name")} />
           <Err k="name" />
         </label>
-        <label className="block text-sm font-medium text-ocean-900">
+        <label className="block text-sm font-medium text-pine-900">
           Email <span className="text-muted">(required)</span>
           <input name="email" type="email" autoComplete="email" className={`${field} ${border("email")}`} {...a11y("email")} />
           <Err k="email" />
         </label>
       </div>
 
-      <label className="block text-sm font-medium text-ocean-900">
+      <label className="block text-sm font-medium text-pine-900">
         Topic <span className="text-muted">(required)</span>
         <select name="topic" defaultValue="" className={`${field} ${border("topic")}`} {...a11y("topic")}>
           <option value="" disabled>
@@ -102,18 +102,18 @@ export function InquiryForm() {
       </label>
 
       <div className="grid gap-6 sm:grid-cols-2">
-        <label className="block text-sm font-medium text-ocean-900">
+        <label className="block text-sm font-medium text-pine-900">
           Planned travel dates
           <input name="travelDates" placeholder="e.g. 12–15 April" className={`${field} ${border("travelDates")}`} />
         </label>
-        <label className="block text-sm font-medium text-ocean-900">
+        <label className="block text-sm font-medium text-pine-900">
           Group size
           <input name="groupSize" inputMode="numeric" placeholder="e.g. 4" className={`${field} ${border("groupSize")}`} {...a11y("groupSize")} />
           <Err k="groupSize" />
         </label>
       </div>
 
-      <label className="block text-sm font-medium text-ocean-900">
+      <label className="block text-sm font-medium text-pine-900">
         Your message <span className="text-muted">(required)</span>
         <textarea name="message" rows={6} className={`${field} ${border("message")}`} {...a11y("message")} />
         <Err k="message" />
@@ -137,7 +137,7 @@ export function InquiryForm() {
         <button
           type="submit"
           disabled={state.kind === "submitting"}
-          className="inline-flex items-center justify-center gap-2 rounded-md bg-signal-600 px-7 py-3.5 text-sm font-bold text-white transition-colors hover:bg-signal-700 disabled:cursor-wait disabled:opacity-70"
+          className="inline-flex items-center justify-center gap-2 rounded-md bg-pine-900 px-7 py-3.5 text-sm font-bold text-white transition-colors hover:bg-pine-950 disabled:cursor-wait disabled:opacity-70"
         >
           {state.kind === "submitting" && <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden="true" />}
           {state.kind === "submitting" ? "Sending…" : "Send inquiry"}

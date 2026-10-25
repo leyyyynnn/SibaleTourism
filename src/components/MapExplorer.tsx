@@ -106,10 +106,10 @@ export function MapExplorer({ compact = false }: { compact?: boolean }) {
   const emptyActive = placeCategories.filter((c) => active.has(c.id) && counts(c.id) === 0);
 
   return (
-    <div className="grid overflow-hidden border border-ocean-900/10 bg-white lg:grid-cols-[22rem_1fr]">
+    <div className="grid overflow-hidden border border-pine-900/10 bg-white lg:grid-cols-[22rem_1fr]">
       {/* Sidebar */}
-      <div className="order-2 flex flex-col border-t border-ocean-900/10 lg:order-1 lg:border-t-0 lg:border-r">
-        <div role="group" aria-labelledby={filterLabelId} className="border-b border-ocean-900/10 p-5">
+      <div className="order-2 flex flex-col border-t border-pine-900/10 lg:order-1 lg:border-t-0 lg:border-r">
+        <div role="group" aria-labelledby={filterLabelId} className="border-b border-pine-900/10 p-5">
           <p id={filterLabelId} className="eyebrow mb-3 text-muted">Show on map</p>
           <div className="flex flex-wrap gap-2">
             {placeCategories.map((c) => {
@@ -121,7 +121,7 @@ export function MapExplorer({ compact = false }: { compact?: boolean }) {
                   aria-pressed={on}
                   onClick={() => toggle(c.id)}
                   className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
-                    on ? "border-ocean-900 bg-ocean-900 text-white" : "border-ocean-900/20 text-ocean-900 hover:border-ocean-900/50"
+                    on ? "border-pine-900 bg-pine-900 text-white" : "border-pine-900/20 text-pine-900 hover:border-pine-900/50"
                   }`}
                 >
                   <span className="h-2 w-2 rounded-full" style={{ background: c.color }} />
@@ -144,13 +144,13 @@ export function MapExplorer({ compact = false }: { compact?: boolean }) {
                   type="button"
                   onClick={() => setSelectedId(p.id)}
                   aria-current={selectedId === p.id ? "true" : undefined}
-                  className={`flex w-full items-start gap-3 border-b border-ocean-900/5 px-5 py-3.5 text-left transition-colors hover:bg-sand-50 ${
-                    selectedId === p.id ? "bg-sand-100" : ""
+                  className={`flex w-full items-start gap-3 border-b border-pine-900/5 px-5 py-3.5 text-left transition-colors hover:bg-cream-50 ${
+                    selectedId === p.id ? "bg-cream-100" : ""
                   }`}
                 >
                   <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: colorOf(p.category) }} />
                   <span>
-                    <span className="block text-sm font-semibold text-ocean-900">{p.name}</span>
+                    <span className="block text-sm font-semibold text-pine-900">{p.name}</span>
                     <span className="block text-xs text-muted">
                       {labelOf(p.category)}
                       {p.coordinates.precision === "approximate" && " · approximate location"}
@@ -164,7 +164,7 @@ export function MapExplorer({ compact = false }: { compact?: boolean }) {
             <div className="space-y-1 p-5 text-xs leading-relaxed text-muted">
               {emptyActive.map((c) => (
                 <p key={c.id}>
-                  <span className="font-semibold text-ocean-900">{c.label}:</span> no verified listings yet. The Municipal Tourism Office will add these.
+                  <span className="font-semibold text-pine-900">{c.label}:</span> no verified listings yet. The Municipal Tourism Office will add these.
                 </p>
               ))}
             </div>
@@ -176,12 +176,12 @@ export function MapExplorer({ compact = false }: { compact?: boolean }) {
       <div className="relative order-1 min-h-[22rem] lg:order-2 lg:min-h-[34rem]">
         <div ref={mapEl} className="absolute inset-0" role="region" aria-label="Map of Concepcion and Sibale Island" />
         {status === "loading" && (
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-sand-100 text-sm text-muted">
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-cream-100 text-sm text-muted">
             <span className="animate-pulse">Loading map…</span>
           </div>
         )}
         {status === "error" && (
-          <div className="absolute inset-x-4 top-4 z-[500] bg-white/95 p-4 text-sm text-ocean-900 shadow">
+          <div className="absolute inset-x-4 top-4 z-[500] bg-white/95 p-4 text-sm text-pine-900 shadow">
             Map tiles could not be loaded. Check your connection. The list of places still works.
           </div>
         )}
@@ -201,20 +201,20 @@ function PlaceDetail({ place, onClose }: { place: MapPlace; onClose: () => void 
   const exact = place.coordinates.precision === "gazetteer";
   return (
     <div className="absolute inset-x-3 bottom-3 z-[500] bg-white p-5 shadow-xl sm:inset-x-auto sm:right-4 sm:bottom-4 sm:w-80">
-      <button type="button" onClick={onClose} className="absolute top-3 right-3 p-1 text-muted hover:text-ocean-900" aria-label="Close details">
+      <button type="button" onClick={onClose} className="absolute top-3 right-3 p-1 text-muted hover:text-pine-900" aria-label="Close details">
         <Close size={18} />
       </button>
       <p className="eyebrow text-[0.62rem]" style={{ color: colorOf(place.category) }}>
         {labelOf(place.category)}
       </p>
-      <h3 className="display mt-2 pr-6 text-2xl text-ocean-900">{place.name}</h3>
+      <h3 className="display mt-2 pr-6 text-2xl text-pine-900">{place.name}</h3>
       <p className="mt-2 text-sm leading-relaxed text-muted">{place.description}</p>
       <p className="mt-3 flex gap-1.5 text-xs text-muted">
         <Pin size={14} className="mt-0.5 shrink-0" /> {place.coordinates.note}
       </p>
       <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
         {place.href && (
-          <Link href={place.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-signal-600 hover:text-signal-700">
+          <Link href={place.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-pine-900 hover:text-pine-950">
             Discover more <ArrowRight size={14} />
           </Link>
         )}
@@ -226,7 +226,7 @@ function PlaceDetail({ place, onClose }: { place: MapPlace; onClose: () => void 
           }
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-ocean-800 hover:text-sea-600"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-pine-800 hover:text-pine-700"
         >
           {exact ? "Directions" : "View area"} <ArrowUpRight size={14} />
           <span className="sr-only">(opens in a new tab)</span>

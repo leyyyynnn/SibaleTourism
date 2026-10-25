@@ -61,7 +61,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
                 }}
                 type="button"
                 onClick={() => open(i)}
-                className="group relative block w-full overflow-hidden bg-ocean-900"
+                className="group relative block w-full overflow-hidden bg-pine-900"
                 aria-label={`View larger: ${img.caption}`}
               >
                 <Image
@@ -89,7 +89,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
           if (e.target === dialogRef.current) close();
         }}
         aria-label={current ? `Photo: ${current.caption}` : "Photo viewer"}
-        className="m-0 h-[100dvh] max-h-none w-screen max-w-none bg-ocean-950/95 p-0 text-white backdrop:bg-black/70"
+        className="m-0 h-[100dvh] max-h-none w-screen max-w-none bg-pine-950/95 p-0 text-white backdrop:bg-black/70"
       >
         {current && index !== null && (
           <div className="flex h-full flex-col">

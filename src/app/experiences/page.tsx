@@ -6,18 +6,18 @@ import { ButtonLink, PageHeader, PhotoSlot, SourceList } from "@/components/ui";
 import { experiences } from "@/data/experiences";
 
 export const metadata: Metadata = {
-  title: "Experiences",
-  description: "Beach days, snorkelling and diving, hikes to viewpoints, waterfalls and everyday island life on Sibale, Concepcion, Romblon.",
+  title: "Activities",
+  description: "Swimming, camping, hiking, scuba diving and freediving on Sibale Island, Concepcion, Romblon.",
 };
 
 export default function ExperiencesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Experiences"
-        title="Slow days on a quiet island"
-        intro="These experiences come from what the island offers and what travellers have done here. They are not packaged tours: most are arranged locally, in person, in the Poblacion."
-        image={{ src: "/images/golden-ridge.jpg", alt: "Forested hill lit by late sun above the town" }}
+        eyebrow="Activities"
+        title="Swim, camp, hike and dive"
+        intro="Five ways to spend your days on Sibale. Most are arranged locally through the Municipal Tourism Office, guides and certified operators."
+        image={{ src: "/images/attractions/bagulayag-cliff-1.jpg", alt: "Bagulayag Cliff rising from clear water" }}
       />
       <div className="py-12 lg:py-20">
         {experiences.map((e, i) => (
@@ -33,10 +33,10 @@ export default function ExperiencesPage() {
                 />
               </Reveal>
               <Reveal className={`lg:col-span-5 ${i % 2 ? "lg:col-start-1 lg:order-1" : "lg:col-start-8"}`} delay={100}>
-                <p className="eyebrow text-sea-600">
+                <p className="eyebrow text-pine-700">
                   {String(i + 1).padStart(2, "0")} · {e.kicker}
                 </p>
-                <h2 id={`${e.slug}-h`} className="display mt-4 text-4xl text-ocean-900 sm:text-5xl">
+                <h2 id={`${e.slug}-h`} className="display mt-4 text-4xl text-pine-900 sm:text-5xl">
                   {e.title}
                 </h2>
                 <p className="mt-5 text-lg leading-relaxed text-muted">{e.description}</p>
@@ -45,7 +45,7 @@ export default function ExperiencesPage() {
                 <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
                   {e.where.map((w) => (
                     <li key={w.href}>
-                      <Link href={w.href} className="group inline-flex items-center gap-1.5 text-sm font-semibold text-signal-600 hover:text-signal-700">
+                      <Link href={w.href} className="group inline-flex items-center gap-1.5 text-sm font-semibold text-pine-900 hover:text-pine-950">
                         {w.label} <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
                       </Link>
                     </li>
@@ -53,10 +53,10 @@ export default function ExperiencesPage() {
                 </ul>
 
                 <p className="eyebrow mt-8 text-muted">Arrangements</p>
-                <ul className="mt-3 space-y-1.5 text-sm text-charcoal/80">
+                <ul className="mt-3 space-y-1.5 text-sm text-ink/80">
                   {e.arrangements.map((a) => (
                     <li key={a} className="flex gap-2">
-                      <span className="mt-2 h-1 w-3 shrink-0 bg-sea-500" aria-hidden="true" />
+                      <span className="mt-2 h-1 w-3 shrink-0 bg-lime-400" aria-hidden="true" />
                       {a}
                     </li>
                   ))}
@@ -66,11 +66,11 @@ export default function ExperiencesPage() {
           </section>
         ))}
       </div>
-      <section className="border-t border-ocean-900/10 bg-sand-100 py-16">
+      <section className="border-t border-pine-900/10 bg-cream-100 py-16">
         <div className="container-site grid gap-10 lg:grid-cols-2 lg:items-start">
           <div>
-            <p className="display text-3xl text-ocean-900">Need a guide or a boat?</p>
-            <p className="mt-3 max-w-md text-muted">The Municipal Tourism Office can point you to local guides and operators.</p>
+            <p className="display text-3xl text-pine-900">Need a guide or a boat?</p>
+            <p className="mt-3 max-w-md text-muted">The Municipal Tourism Office can connect you with local guides, boat operators and dive operators.</p>
             <div className="mt-6">
               <ButtonLink href="/contact">Contact the tourism office</ButtonLink>
             </div>

@@ -24,45 +24,43 @@ export const itineraries: Itinerary[] = [
     length: "1 night",
     mood: "A first look",
     summary:
-      "The shortest practical visit. Cross in the late morning, spend the afternoon and evening around the bay, and catch the early boat back.",
+      "The shortest practical visit. Cross in the late morning, spend the afternoon on the beach and the evening by the bay, and take the early boat back.",
     days: [
       {
         label: "Day 1",
         stops: [
-          { time: "Late morning", title: "Boat from Pinamalayan", note: "Allow 2–3 hours or more. Departure times change, so confirm the day before." },
-          { time: "Afternoon", title: "Settle in at the Poblacion", note: "Arrange lodging and a habal-habal driver for the next morning." },
-          { time: "Late afternoon", title: "Concepcion Bay at golden hour", note: "Walk the waterfront and pier.", href: "/destinations/concepcion-bay" },
+          { time: "Late morning", title: "Boat from Pinamalayan", note: "Allow 2–3 hours or more. Confirm the departure the day before." },
+          { time: "Afternoon", title: "Quebrada Beach", note: "Swim in clear water facing Mount Batariya.", href: "/destinations/quebrada-beach" },
+          { time: "Sunset", title: "Concepcion Bay", note: "Watch the light fall on Mount Batariya from the Poblacion waterfront.", href: "/destinations/mount-batariya" },
         ],
       },
       {
         label: "Day 2",
-        stops: [
-          { time: "Early morning", title: "Return crossing", note: "The return boat has historically left early. Confirm the time on arrival." },
-        ],
+        stops: [{ time: "Early morning", title: "Return crossing", note: "Confirm the return time when you arrive." }],
       },
     ],
   },
   {
-    slug: "coast-and-nature",
-    title: "Coast and nature",
+    slug: "coast-and-cliffs",
+    title: "Coast and cliffs",
     length: "2 nights",
     mood: "Beaches & viewpoints",
     summary:
-      "Gives you one full island day for a beach, a viewpoint and the sunset at Bagulayag. Times depend on weather, sea conditions and transport you arrange locally.",
+      "One full island day for a quiet beach and the clifftop at Bagulayag. Timings depend on the weather, the sea and transport you arrange locally.",
     days: [
       {
         label: "Day 1",
         stops: [
           { time: "Late morning", title: "Crossing from Pinamalayan", note: "Confirm the schedule with the operator." },
-          { time: "Evening", title: "Poblacion and the bay", note: "Dinner near the waterfront. Some eateries close on Sundays.", href: "/destinations/concepcion-bay" },
+          { time: "Evening", title: "Settle in at the Poblacion", note: "Arrange a habal-habal driver or guide for the next day." },
         ],
       },
       {
         label: "Day 2",
         stops: [
-          { time: "Morning", title: "Beach and snorkelling", note: "Guiwanon or Tonggo, depending on sea conditions.", href: "/destinations/guiwanon-beach" },
-          { time: "Midday", title: "Rest out of the sun", note: "Little shade on the trails." },
-          { time: "Afternoon", title: "Bagulayag", note: "Motorcycle to the jump-off, then a 20–30 min walk.", href: "/destinations/bagulayag" },
+          { time: "Morning", title: "Guiwanon Beach", note: "Swim and snorkel over the reef.", href: "/destinations/guiwanon-beach" },
+          { time: "Midday", title: "Rest out of the sun", note: "There is little shade on the trails." },
+          { time: "Late afternoon", title: "Bagulayag Cliff", note: "Sunset over Banton Pass. Keep back from the edge.", href: "/destinations/bagulayag-cliff" },
         ],
       },
       {
@@ -77,24 +75,27 @@ export const itineraries: Itinerary[] = [
     length: "3 nights",
     mood: "Slow travel",
     summary:
-      "A slower pace with room for a guided hike, a second beach and a spare half-day, which matters when the weather turns.",
+      "Room for a guided ridge hike, a day in the water (diving if you are certified) and a spare half-day for when the weather turns.",
     days: [
       {
         label: "Day 1",
-        stops: [{ time: "Afternoon", title: "Arrive and settle in", note: "Meet your guide and agree plans for the next days." }],
+        stops: [
+          { time: "Afternoon", title: "Arrive and settle in", note: "Meet your guide and plan the next days." },
+          { time: "Late afternoon", title: "Tinigban Trail", note: "The carved rock in Sitio Suyor. Ask first.", href: "/destinations/tinigban-trail" },
+        ],
       },
       {
         label: "Day 2",
         stops: [
-          { time: "Morning", title: "Guided hike", note: "Mount Banderahan or Buyo and Hamtik Peak, with a local guide.", href: "/destinations/mount-banderahan" },
-          { time: "Afternoon", title: "Tabunan Beach", note: "Swim and snorkel.", href: "/destinations/tabunan-beach" },
+          { time: "Early morning", title: "Gran Tsina Ridge", note: "Guided hike along the ridge.", href: "/destinations/gran-tsina-ridge" },
+          { time: "Afternoon", title: "Cambilog Beach", note: "A quiet beach for the rest of the day.", href: "/destinations/cambilog-beach" },
         ],
       },
       {
         label: "Day 3",
         stops: [
-          { time: "Morning", title: "Tinigban Falls or the stone arch", note: "The falls are seasonal. Ask locally which is better.", href: "/destinations/tinigban-falls" },
-          { time: "Late afternoon", title: "Sunset at Bagulayag", note: "Bring a light jacket for the wind.", href: "/destinations/bagulayag" },
+          { time: "Morning", title: "Dive or freedive", note: "Coral Cathedral or the Mactan wreck, with a certified operator.", href: "/destinations/coral-cathedral" },
+          { time: "Late afternoon", title: "Bagulayag Cliff", note: "Sunset from the clifftop.", href: "/destinations/bagulayag-cliff" },
         ],
       },
       {

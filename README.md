@@ -1,6 +1,6 @@
-# Concepcion Tourism
+# Sibale Tourism
 
-Tourism website for the **Municipality of Concepcion, Romblon** (Maestro de Campo / Sibale Island), built with **Next.js 15 (App Router) + Tailwind CSS v4 + TypeScript**. Visual direction comes from the Figma draft *Sibale Tourism Website*: aerial hero, bold Montserrat "CONCEPCION" wordmark, "Your somewhere is here", the blue CTA and a minimal top nav. It also adds an editorial serif (Fraunces) for headings.
+Tourism website for the **Municipality of Concepcion, Romblon** (Maestro de Campo / Sibale Island), built with **Next.js 16 (App Router) + Tailwind CSS v4 + TypeScript**. Colours follow the LGU *Color Palette Usage Guidelines* (deep greens, lime accents, warm cream). Content follows the *Concepcion LGU Profile* and the Convention and Visitors' Office *Major Visitor Attractions*. Visual direction comes from the Figma draft *Sibale Tourism Website*: aerial hero, bold Montserrat "CONCEPCION" wordmark, "Your somewhere is here", the blue CTA and a minimal top nav. It also adds an editorial serif (Fraunces) for headings.
 
 ## Run it
 
@@ -43,22 +43,19 @@ All content lives in `src/data/`:
 - **Logo.** `src/components/Wordmark.tsx` is a placeholder identity.
 - **Domain.** Set `NEXT_PUBLIC_SITE_URL` for canonical URLs, the sitemap and social previews.
 
-## Content the Municipal Tourism Office needs to supply or confirm
+## Content still to supply or confirm
 
-1. Official contact details: office address, phone, email, Facebook page, website, office hours.
-2. The current Pinamalayan–Concepcion boat schedule, fares, operator and pier. Older reports describe one daily trip of 2–3 hours, departing late morning.
-3. Barangay, exact location and access for each attraction marked *Details to confirm*.
-4. Preferred spellings: Tonggo/Tongo/Tunggo, Tinigban/Tiniguiban, Gui-ob/Guiob.
-5. Named dive and wreck sites, accredited dive operators, and marine protected area rules.
-6. Whether Matudtod Cave is open to visitors at all, and its heritage status.
-7. Accredited accommodation and eateries. Two traveller-reported places (2015, 2023) are deliberately **not** listed until confirmed.
-8. Festival calendar, local dishes, crafts and community-led experiences.
-9. Local emergency numbers: health centre, police, coast guard.
-10. Not yet verified and so left out: "Concepcion Top View", shipwreck sites and the full list of attractions in HB 4026.
+1. Tourism Office phone number and office hours (`src/data/site.ts`).
+2. Location and contact details for each accommodation (`src/data/stays.ts`).
+3. Current Pinamalayan–Sibale boat schedule, fares and operator.
+4. Access routes and barangays for attractions marked *Details to confirm* (Gran Tsina Ridge, Tinigban Trail, Guiob Beach).
+5. Photos of Tinigban Trail and Guiob Beach, and a higher-resolution Coral Cathedral photo.
+6. Accredited dive operators and visitor rules for Tonggo (turtle sanctuary) and Maisuting Baybay (fish sanctuary).
+7. Population: the LGU Profile uses the 2020 census (3,561); the PSA 2024 census reports 3,427. Both are shown on /discover.
 
 ## Photographs
 
-The only verified local photograph is the aerial of Concepcion Bay from the Figma draft. The hero and five crops of it are in `public/images/`. **Confirm the photographer credit and licence before launch.** Every other image slot is a clearly labelled "Photograph needed" placeholder with a brief. Shots needed: Bagulayag, the beaches, the Lambirongan arch, Tinigban Falls, reefs (underwater), the grotto, fishers, copra drying, and people (with consent). Add new photos to `public/images/` and reference them from `src/data/`.
+Attraction photos in `public/images/attractions/` come from the LGU's *Sibale Visitor Attractions* folder; the Mactan Shipwreck and Coral Cathedral photos are taken from the LGU Profile; `public/media/sibale-corals.mp4` is a 26-second web cut of *Sibale Corals.mp4*. The hero aerial comes from the Figma draft. Confirm photographer credits before launch.
 
 ## Sources
 

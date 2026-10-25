@@ -26,7 +26,7 @@ export function DestinationExplorer({ initialCategory }: { initialCategory?: str
     return destinations.filter((d) => {
       if (filter !== "All" && d.category !== filter) return false;
       if (!q) return true;
-      return [d.name, ...(d.altNames ?? []), d.summary, d.category, d.barangay ?? ""].join(" ").toLowerCase().includes(q);
+      return [d.name, ...(d.altNames ?? []), d.summary, d.category, d.location ?? ""].join(" ").toLowerCase().includes(q);
     });
   }, [filter, query]);
 
@@ -34,7 +34,7 @@ export function DestinationExplorer({ initialCategory }: { initialCategory?: str
 
   return (
     <div>
-      <div className="flex flex-col gap-5 border-b border-ocean-900/15 pb-6 lg:flex-row lg:items-center lg:justify-between">
+      <div className="flex flex-col gap-5 border-b border-pine-900/15 pb-6 lg:flex-row lg:items-center lg:justify-between">
         <div role="group" aria-label="Filter by category" className="-mx-1 flex flex-wrap gap-2">
           {(["All", ...destinationCategories] as Filter[]).map((c) => (
             <button
@@ -43,7 +43,7 @@ export function DestinationExplorer({ initialCategory }: { initialCategory?: str
               aria-pressed={filter === c}
               onClick={() => setFilter(c)}
               className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                filter === c ? "border-ocean-900 bg-ocean-900 text-white" : "border-ocean-900/20 text-ocean-900 hover:border-ocean-900/60"
+                filter === c ? "border-pine-900 bg-pine-900 text-white" : "border-pine-900/20 text-pine-900 hover:border-pine-900/60"
               }`}
             >
               {c} <span className={filter === c ? "text-white/60" : "text-muted"}>{count(c)}</span>
@@ -58,13 +58,13 @@ export function DestinationExplorer({ initialCategory }: { initialCategory?: str
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search beaches, falls, viewpoints…"
-            className="w-full rounded-md border border-ocean-900/20 bg-white py-3 pr-10 pl-11 text-sm text-ocean-900 placeholder:text-muted/80 focus:border-sea-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-sea-500"
+            className="w-full rounded-md border border-pine-900/20 bg-white py-3 pr-10 pl-11 text-sm text-pine-900 placeholder:text-muted/80 focus:border-lime-400 focus:outline-none focus-visible:outline-2 focus-visible:outline-lime-400"
           />
           {query && (
             <button
               type="button"
               onClick={() => setQuery("")}
-              className="absolute top-1/2 right-2 -translate-y-1/2 p-1.5 text-muted hover:text-ocean-900"
+              className="absolute top-1/2 right-2 -translate-y-1/2 p-1.5 text-muted hover:text-pine-900"
               aria-label="Clear search"
             >
               <Close size={16} />
@@ -80,16 +80,16 @@ export function DestinationExplorer({ initialCategory }: { initialCategory?: str
       </p>
 
       {results.length === 0 ? (
-        <div className="mt-10 border border-dashed border-ocean-900/20 p-12 text-center">
-          <p className="display text-3xl text-ocean-900">Nothing found</p>
-          <p className="mt-3 text-sm text-muted">Try another name or category. Local spellings vary: Tonggo is also written Tongo.</p>
+        <div className="mt-10 border border-dashed border-pine-900/20 p-12 text-center">
+          <p className="display text-3xl text-pine-900">Nothing found</p>
+          <p className="mt-3 text-sm text-muted">Try another name or category. Local spellings vary: Quebrada is also written Quibrada.</p>
           <button
             type="button"
             onClick={() => {
               setQuery("");
               setFilter("All");
             }}
-            className="mt-6 text-sm font-semibold text-signal-600 underline underline-offset-4"
+            className="mt-6 text-sm font-semibold text-pine-900 underline underline-offset-4"
           >
             Show all destinations
           </button>

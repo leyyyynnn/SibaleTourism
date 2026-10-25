@@ -8,10 +8,21 @@ export type Source = {
   title: string;
   publisher: string;
   date?: string;
-  url: string;
+  /** Omitted for documents supplied directly by the municipality. */
+  url?: string;
 };
 
 export const sources = {
+  lguProfile: {
+    id: "lguProfile",
+    title: "Concepcion Local Government Unit Profile",
+    publisher: "LGU Concepcion",
+  },
+  cvoAttractions: {
+    id: "cvoAttractions",
+    title: "Major Visitor Attractions",
+    publisher: "Concepcion Convention and Visitors’ Office",
+  },
   wikipedia: {
     id: "wikipedia",
     title: "Concepcion, Romblon",

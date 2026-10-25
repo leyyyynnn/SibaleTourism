@@ -21,28 +21,28 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Discover Concepcion · Sibale Island, Romblon",
-    template: "%s · Concepcion, Romblon",
+    default: "Sibale Tourism · Concepcion, Romblon",
+    template: "%s · Sibale Tourism",
   },
   description: site.description,
   openGraph: {
     type: "website",
-    siteName: "Discover Concepcion",
-    title: "Discover Concepcion · Sibale Island, Romblon",
+    siteName: "Sibale Tourism",
+    title: "Sibale Tourism · Your somewhere is here",
     description: site.description,
     images: [{ url: "/images/og-concepcion.jpg", width: 1200, height: 630, alt: "Aerial view of Concepcion Bay, Sibale Island" }],
     locale: "en_PH",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Discover Concepcion · Sibale Island, Romblon",
+    title: "Sibale Tourism · Your somewhere is here",
     description: site.description,
     images: ["/images/og-concepcion.jpg"],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#061826",
+  themeColor: "#0f2b25",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

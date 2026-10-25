@@ -25,7 +25,7 @@ export function DestinationCard({
   return (
     <article className="group relative">
       <PhotoSlot
-        image={d.image}
+        image={d.images[0]}
         label={d.name}
         brief={d.photoBrief}
         tone={toneFor[d.category]}
@@ -33,17 +33,17 @@ export function DestinationCard({
         sizes={sizes}
       />
       <div className="mt-5 flex items-center gap-3 text-xs text-muted">
-        <span className="eyebrow text-sea-600">{d.category}</span>
-        <span aria-hidden="true" className="h-px w-6 bg-ocean-900/20" />
-        <span>{d.barangay ? `Brgy. ${d.barangay}` : "Barangay to be confirmed"}</span>
+        <span className="eyebrow text-pine-700">{d.category}</span>
+        <span aria-hidden="true" className="h-px w-6 bg-pine-900/20" />
+        <span>{d.location ?? "Location to be confirmed"}</span>
       </div>
-      <h3 className={`display mt-3 text-ocean-900 ${size === "lg" ? "text-4xl sm:text-5xl" : "text-[1.9rem]"}`}>
+      <h3 className={`display mt-3 text-pine-900 ${size === "lg" ? "text-4xl sm:text-5xl" : "text-[1.9rem]"}`}>
         <Link href={`/destinations/${d.slug}`} className="after:absolute after:inset-0">
           {d.name}
         </Link>
       </h3>
       <p className={`mt-3 leading-relaxed text-muted ${size === "lg" ? "max-w-xl text-base sm:text-lg" : "text-[0.95rem]"}`}>{d.summary}</p>
-      <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-signal-600 transition-colors group-hover:text-signal-700">
+      <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-pine-900 transition-colors group-hover:text-pine-950">
         Discover more <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
       </span>
     </article>

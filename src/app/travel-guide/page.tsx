@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ArrowRight } from "@/components/Icons";
 import { ButtonLink, Notice, PageHeader, SourceList } from "@/components/ui";
 import { itineraries } from "@/data/itineraries";
-import { nationalEmergencyNumber } from "@/data/site";
+import { directory, nationalEmergencyNumber } from "@/data/site";
+import { stays } from "@/data/stays";
 
 export const metadata: Metadata = {
   title: "Travel Guide",
@@ -48,8 +49,8 @@ export default function TravelGuidePage() {
       <PageHeader
         eyebrow="Travel guide"
         title="Plan your visit"
-        intro="Concepcion is reachable, but it is remote. Getting the crossing right is most of the planning. This guide separates what is documented from what you must confirm locally."
-        image={{ src: "/images/concepcion-bay-water.jpg", alt: "Calm water of Concepcion Bay" }}
+        intro="Sibale is reachable, but it is remote. There is no direct, year-round link to the mainland, so getting the crossing right is most of the planning."
+        image={{ src: "/images/attractions/quebrada-beach-1.jpg", alt: "Aerial view of Quebrada Beach with palms and a turquoise reef" }}
       />
 
       <div className="container-site grid gap-12 py-16 lg:grid-cols-12 lg:py-24">
@@ -61,7 +62,7 @@ export default function TravelGuidePage() {
                 <li key={t.id}>
                   <a
                     href={`#${t.id}`}
-                    className="flex gap-3 rounded-full border border-ocean-900/15 px-3 py-1.5 text-sm text-ocean-900 hover:border-ocean-900 lg:rounded-none lg:border-0 lg:border-l lg:px-4 lg:py-2 lg:hover:border-sea-500"
+                    className="flex gap-3 rounded-full border border-pine-900/15 px-3 py-1.5 text-sm text-pine-900 hover:border-pine-900 lg:rounded-none lg:border-0 lg:border-l lg:px-4 lg:py-2 lg:hover:border-lime-400"
                   >
                     <span className="hidden tabular-nums text-muted lg:inline">{String(i + 1).padStart(2, "0")}</span>
                     {t.label}
@@ -74,19 +75,19 @@ export default function TravelGuidePage() {
 
         <div className="min-w-0 space-y-24 lg:col-span-9">
           <section id="getting-there" aria-labelledby="h-getting-there" className="scroll-mt-28">
-            <h2 id="h-getting-there" className="display text-4xl text-ocean-900 sm:text-5xl">
+            <h2 id="h-getting-there" className="display text-4xl text-pine-900 sm:text-5xl">
               Getting there
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
               There is no airport on Sibale. The usual route runs through Batangas and Oriental Mindoro to Pinamalayan, then across by boat. Some travellers also come via Tablas Island in Romblon, but that route is not well documented.
             </p>
-            <ol className="mt-10 border-l border-ocean-900/15">
+            <ol className="mt-10 border-l border-pine-900/15">
               {route.map((r, i) => (
                 <li key={r.leg} className="relative pb-10 pl-10 last:pb-0">
-                  <span className="absolute top-0 -left-[0.9rem] flex h-7 w-7 items-center justify-center rounded-full bg-ocean-900 text-xs font-semibold text-white">
+                  <span className="absolute top-0 -left-[0.9rem] flex h-7 w-7 items-center justify-center rounded-full bg-pine-900 text-xs font-semibold text-white">
                     {i + 1}
                   </span>
-                  <p className="text-lg font-semibold text-ocean-900">{r.leg}</p>
+                  <p className="text-lg font-semibold text-pine-900">{r.leg}</p>
                   <p className="mt-2 max-w-2xl leading-relaxed text-muted">{r.detail}</p>
                 </li>
               ))}
@@ -103,18 +104,18 @@ export default function TravelGuidePage() {
           </section>
 
           <section id="on-the-island" aria-labelledby="h-island" className="scroll-mt-28">
-            <h2 id="h-island" className="display text-4xl text-ocean-900 sm:text-5xl">
+            <h2 id="h-island" className="display text-4xl text-pine-900 sm:text-5xl">
               On the island
             </h2>
-            <dl className="mt-10 grid gap-px bg-ocean-900/10 sm:grid-cols-2">
+            <dl className="mt-10 grid gap-px bg-pine-900/10 sm:grid-cols-2">
               {[
                 { t: "Getting around", d: "There is no public transport. Hire a habal-habal (motorcycle with driver) or arrange a small boat in the Poblacion. Agree on the price before you set off." },
-                { t: "Cash", d: "There is no ATM on the island. Bring enough cash for your whole stay, plus a buffer in case of weather delays." },
-                { t: "Electricity & signal", d: "Older reports describe power only at set hours. Recent reports say mobile data works. Bring a power bank either way." },
+                { t: "Cash", d: "There is no bank branch or ATM on the island. Bring enough cash for your whole stay, plus a buffer in case of weather delays." },
+                { t: "Electricity & signal", d: "The island has electricity 24 hours a day, though brownouts happen from time to time. Mobile data works. Bring a power bank and a torch just in case." },
                 { t: "Shops & food", d: "Small stores and carinderias serve the Poblacion. Some close on Sundays, so carry snacks and water." },
               ].map((x) => (
-                <div key={x.t} className="bg-sand-50 p-7">
-                  <dt className="font-semibold text-ocean-900">{x.t}</dt>
+                <div key={x.t} className="bg-cream-50 p-7">
+                  <dt className="font-semibold text-pine-900">{x.t}</dt>
                   <dd className="mt-2 text-[0.95rem] leading-relaxed text-muted">{x.d}</dd>
                 </div>
               ))}
@@ -122,18 +123,18 @@ export default function TravelGuidePage() {
           </section>
 
           <section id="when-to-go" aria-labelledby="h-when" className="scroll-mt-28">
-            <h2 id="h-when" className="display text-4xl text-ocean-900 sm:text-5xl">
+            <h2 id="h-when" className="display text-4xl text-pine-900 sm:text-5xl">
               When to go
             </h2>
             <div className="mt-8 grid gap-8 md:grid-cols-2">
-              <div className="border-t-2 border-sea-500 pt-5">
-                <p className="eyebrow text-sea-600">Drier months</p>
+              <div className="border-t-2 border-lime-400 pt-5">
+                <p className="eyebrow text-pine-700">Drier months</p>
                 <p className="mt-3 leading-relaxed text-muted">
                   March to May is the most often recommended time, with calmer seas for the crossing and clearer days for the viewpoints.
                 </p>
               </div>
-              <div className="border-t-2 border-ocean-500 pt-5">
-                <p className="eyebrow text-ocean-700">Wetter months</p>
+              <div className="border-t-2 border-pine-500 pt-5">
+                <p className="eyebrow text-pine-700">Wetter months</p>
                 <p className="mt-3 leading-relaxed text-muted">
                   Rain peaks from June to September. Expect rougher crossings and possible cancellations, but fuller waterfalls. The island averages about 2,170 mm of rain a year.
                 </p>
@@ -145,7 +146,7 @@ export default function TravelGuidePage() {
           </section>
 
           <section id="packing" aria-labelledby="h-pack" className="scroll-mt-28">
-            <h2 id="h-pack" className="display text-4xl text-ocean-900 sm:text-5xl">
+            <h2 id="h-pack" className="display text-4xl text-pine-900 sm:text-5xl">
               What to bring
             </h2>
             <ul className="mt-8 grid gap-x-10 gap-y-3 sm:grid-cols-2">
@@ -161,8 +162,8 @@ export default function TravelGuidePage() {
                 "A light rain jacket in the wet season",
                 "A bag to carry your rubbish back out",
               ].map((x) => (
-                <li key={x} className="flex gap-3 border-b border-ocean-900/10 pb-3 text-charcoal/85">
-                  <span className="mt-2 h-1 w-3 shrink-0 bg-sea-500" aria-hidden="true" />
+                <li key={x} className="flex gap-3 border-b border-pine-900/10 pb-3 text-ink/85">
+                  <span className="mt-2 h-1 w-3 shrink-0 bg-lime-400" aria-hidden="true" />
                   {x}
                 </li>
               ))}
@@ -170,7 +171,7 @@ export default function TravelGuidePage() {
           </section>
 
           <section id="safety" aria-labelledby="h-safety" className="scroll-mt-28">
-            <h2 id="h-safety" className="display text-4xl text-ocean-900 sm:text-5xl">
+            <h2 id="h-safety" className="display text-4xl text-pine-900 sm:text-5xl">
               Safety
             </h2>
             <div className="mt-8 grid gap-6 md:grid-cols-3">
@@ -179,23 +180,33 @@ export default function TravelGuidePage() {
                 { t: "In the water", d: "There are no lifeguards. Swim with a companion, check depth before jumping, and watch for currents off headlands." },
                 { t: "On trails", d: "Hike with a local guide, start early, carry water, and keep back from cliff edges at windy viewpoints." },
               ].map((x) => (
-                <div key={x.t} className="bg-sand-100 p-6">
-                  <p className="font-semibold text-ocean-900">{x.t}</p>
+                <div key={x.t} className="bg-cream-100 p-6">
+                  <p className="font-semibold text-pine-900">{x.t}</p>
                   <p className="mt-2 text-sm leading-relaxed text-muted">{x.d}</p>
                 </div>
               ))}
             </div>
             <p className="mt-6 text-sm text-muted">
               Emergency (nationwide):{" "}
-              <a href={`tel:${nationalEmergencyNumber}`} className="font-semibold text-ocean-900">
+              <a href={`tel:${nationalEmergencyNumber}`} className="font-semibold text-pine-900">
                 {nationalEmergencyNumber}
               </a>
-              . Local health centre, police and coast guard numbers will be added once the municipality confirms them.
+              .
             </p>
+            <ul className="mt-6 grid gap-px bg-pine-900/10 sm:grid-cols-2">
+              {directory.slice(1).map((d) => (
+                <li key={d.office} className="bg-cream-50 p-5 text-sm">
+                  <p className="font-semibold text-pine-900">{d.office}</p>
+                  <a href={`mailto:${d.email}`} className="mt-1 inline-block break-all text-muted underline decoration-pine-900/20 underline-offset-4 hover:text-pine-900">
+                    {d.email}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </section>
 
           <section id="itineraries" aria-labelledby="h-itin" className="scroll-mt-28">
-            <h2 id="h-itin" className="display text-4xl text-ocean-900 sm:text-5xl">
+            <h2 id="h-itin" className="display text-4xl text-pine-900 sm:text-5xl">
               Suggested itineraries
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
@@ -203,30 +214,30 @@ export default function TravelGuidePage() {
             </p>
             <div className="mt-10 space-y-6">
               {itineraries.map((it) => (
-                <details key={it.slug} id={it.slug} className="group scroll-mt-28 border border-ocean-900/15 bg-white open:shadow-sm">
+                <details key={it.slug} id={it.slug} className="group scroll-mt-28 border border-pine-900/15 bg-white open:shadow-sm">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 sm:p-8 [&::-webkit-details-marker]:hidden">
                     <span>
-                      <span className="eyebrow text-sea-600">
+                      <span className="eyebrow text-pine-700">
                         {it.length} · {it.mood}
                       </span>
-                      <span className="display mt-2 block text-3xl text-ocean-900">{it.title}</span>
+                      <span className="display mt-2 block text-3xl text-pine-900">{it.title}</span>
                       <span className="mt-2 block max-w-2xl text-[0.95rem] text-muted">{it.summary}</span>
                     </span>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ocean-900/20 text-ocean-900 transition-transform group-open:rotate-45" aria-hidden="true">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-pine-900/20 text-pine-900 transition-transform group-open:rotate-45" aria-hidden="true">
                       +
                     </span>
                   </summary>
-                  <div className="grid gap-px border-t border-ocean-900/10 bg-ocean-900/10 md:grid-cols-2 xl:grid-cols-4">
+                  <div className="grid gap-px border-t border-pine-900/10 bg-pine-900/10 md:grid-cols-2 xl:grid-cols-4">
                     {it.days.map((day) => (
-                      <div key={day.label} className="bg-sand-50 p-6">
-                        <p className="font-semibold text-ocean-900">{day.label}</p>
+                      <div key={day.label} className="bg-cream-50 p-6">
+                        <p className="font-semibold text-pine-900">{day.label}</p>
                         <ol className="mt-4 space-y-4">
                           {day.stops.map((s) => (
                             <li key={s.title}>
-                              <p className="text-xs text-sea-600">{s.time}</p>
-                              <p className="font-medium text-ocean-900">
+                              <p className="text-xs text-pine-700">{s.time}</p>
+                              <p className="font-medium text-pine-900">
                                 {s.href ? (
-                                  <Link href={s.href} className="underline decoration-ocean-900/20 underline-offset-4 hover:decoration-ocean-900">
+                                  <Link href={s.href} className="underline decoration-pine-900/20 underline-offset-4 hover:decoration-pine-900">
                                     {s.title}
                                   </Link>
                                 ) : (
@@ -246,38 +257,40 @@ export default function TravelGuidePage() {
           </section>
 
           <section id="stay-and-eat" aria-labelledby="h-stay" className="scroll-mt-28">
-            <h2 id="h-stay" className="display text-4xl text-ocean-900 sm:text-5xl">
+            <h2 id="h-stay" className="display text-4xl text-pine-900 sm:text-5xl">
               Where to stay and eat
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-              Accommodation on Sibale is very limited, and none is bookable online that we could verify. The Municipal Tourism Office is preparing a list of accredited lodging and eateries.
+              Accommodation on Sibale is small and family-run, and most of it is in Barangay Poblacion. Book ahead through the Municipal Tourism Office.
             </p>
-            <div className="mt-10 grid gap-6 md:grid-cols-2">
-              {["Accommodation", "Places to eat"].map((kind) => (
-                <div key={kind} className="flex min-h-48 flex-col justify-between border border-dashed border-ocean-900/25 p-7">
+            <ul className="mt-10 grid gap-px bg-pine-900/10 sm:grid-cols-2">
+              {stays.map((st) => (
+                <li key={st.name} className="flex flex-col justify-between gap-4 bg-cream-50 p-6">
                   <div>
-                    <p className="eyebrow text-muted">{kind}</p>
-                    <p className="display mt-3 text-2xl text-ocean-900">Verified listings coming soon</p>
-                    <p className="mt-2 text-sm text-muted">
-                      Listings will show the business name, barangay, amenities and contact details once the tourism office confirms them.
-                    </p>
+                    <p className="eyebrow text-pine-700">{st.type}</p>
+                    <p className="mt-2 text-xl font-semibold text-pine-900">{st.name}</p>
+                    {st.location && <p className="mt-1 text-sm text-muted">{st.location}</p>}
                   </div>
-                  <Link href="/contact" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-signal-600">
-                    Ask about current options <ArrowRight size={14} />
-                  </Link>
-                </div>
+                  {st.contact ? (
+                    <p className="text-sm text-pine-900">{st.contact}</p>
+                  ) : (
+                    <Link href="/contact" className="inline-flex items-center gap-1.5 text-sm font-semibold text-pine-900">
+                      Book via the Tourism Office <ArrowRight size={14} />
+                    </Link>
+                  )}
+                </li>
               ))}
-            </div>
+            </ul>
             <p className="mt-6 max-w-3xl text-sm text-muted">
-              Past traveller accounts (2015 and 2023) mention a small inn and eatery in the Poblacion. Their current status is not confirmed, so they are not listed here.
+              Places to eat are mostly small eateries serving local food and traditional delicacies, and some close on Sundays.
             </p>
           </section>
 
           <section id="responsible-travel" aria-labelledby="h-resp" className="scroll-mt-28">
-            <h2 id="h-resp" className="display text-4xl text-ocean-900 sm:text-5xl">
+            <h2 id="h-resp" className="display text-4xl text-pine-900 sm:text-5xl">
               Responsible travel
             </h2>
-            <div className="mt-8 grid gap-px bg-ocean-900/10 sm:grid-cols-2">
+            <div className="mt-8 grid gap-px bg-pine-900/10 sm:grid-cols-2">
               {[
                 { t: "Protect the reefs", d: "Don't stand on, touch, feed or collect anything underwater. Use reef-safe sunscreen and keep fins off the coral." },
                 { t: "Snorkel and dive responsibly", d: "Dive only with certified operators, keep your buoyancy under control, and follow any marine protected area rules." },
@@ -286,23 +299,23 @@ export default function TravelGuidePage() {
                 { t: "Respect residents", d: "Ask before photographing people or homes, dress modestly in town and at religious sites, and keep noise down at night." },
                 { t: "Support local", d: "Hire local guides and drivers, eat at family-run carinderias and buy local products." },
               ].map((x) => (
-                <div key={x.t} className="bg-sand-50 p-7">
-                  <p className="font-semibold text-ocean-900">{x.t}</p>
+                <div key={x.t} className="bg-cream-50 p-7">
+                  <p className="font-semibold text-pine-900">{x.t}</p>
                   <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{x.d}</p>
                 </div>
               ))}
             </div>
           </section>
 
-          <section aria-label="Sources and next steps" className="grid gap-10 border-t border-ocean-900/10 pt-12 md:grid-cols-2">
+          <section aria-label="Sources and next steps" className="grid gap-10 border-t border-pine-900/10 pt-12 md:grid-cols-2">
             <div>
-              <p className="display text-3xl text-ocean-900">Still have questions?</p>
+              <p className="display text-3xl text-pine-900">Still have questions?</p>
               <p className="mt-3 text-muted">Ask about boats, guides and places to stay.</p>
               <div className="mt-6">
                 <ButtonLink href="/contact">Contact the tourism office</ButtonLink>
               </div>
             </div>
-            <SourceList ids={["rnnBagulayag", "romblonParadiseHowTo", "xinkule2015", "tribune2022", "wikipedia", "philatlas"]} />
+            <SourceList ids={["lguProfile", "cvoAttractions", "rnnBagulayag", "romblonParadiseHowTo", "xinkule2015", "tribune2022"]} />
           </section>
         </div>
       </div>

@@ -1,40 +1,32 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------
-   Concepcion design tokens
-   Ocean (navigation, headings) · Sea (accents) · Sand (surfaces)
-   Forest (conservation) · Charcoal (text) · Signal (primary CTA,
-   the blue from the Figma draft's button)
+   Sibale design tokens — from the LGU "Color Palette Usage Guidelines"
+   Pine   = Deep Forest Green #0F2B25 · Evergreen #153A32 · Forest Green #1C4A40
+   Lime   = Signature Lime #C9EC4D · Accent Lime #AED92E (accents only, 5–10%)
+   Cream  = Warm Cream #F6F4EE (page) · Soft Cream #EFECE3 (secondary surfaces)
+   Ink    = Charcoal Text #16241F · Muted Text #5C6A64
 ---------------------------------------------------------------- */
 @theme {
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
 
-  --color-ocean-950: #061826;
-  --color-ocean-900: #0b2a40;
-  --color-ocean-800: #113a57;
-  --color-ocean-700: #17496c;
-  --color-ocean-500: #3b6e91;
+  --color-pine-950: #0f2b25;
+  --color-pine-900: #153a32;
+  --color-pine-800: #1c4a40;
+  --color-pine-700: #2a5a4e;
+  --color-pine-500: #5c6a64;
 
-  --color-sea-600: #0c7b77;
-  --color-sea-500: #0f8f8a;
-  --color-sea-300: #6cc9c3;
-  --color-sea-100: #d9f1ee;
+  --color-lime-300: #c9ec4d;
+  --color-lime-400: #aed92e;
 
-  --color-sand-50: #fbf8f2;
-  --color-sand-100: #f4ede1;
-  --color-sand-200: #e9dfcd;
-  --color-sand-300: #d8c9ae;
+  --color-cream-50: #f6f4ee;
+  --color-cream-100: #efece3;
+  --color-cream-200: #e4e0d3;
+  --color-cream-300: #d3cdb9;
 
-  --color-forest-900: #1f3527;
-  --color-forest-700: #2f4f3b;
-  --color-forest-500: #4f7a5c;
-
-  --color-charcoal: #1e2326;
-  --color-muted: #59636a;
-
-  --color-signal-600: #0b50c8;
-  --color-signal-700: #093f9f;
+  --color-ink: #16241f;
+  --color-muted: #5c6a64;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -56,19 +48,20 @@
     }
   }
   body {
-    background: var(--color-sand-50);
-    color: var(--color-charcoal);
+    background: var(--color-cream-50);
+    color: var(--color-ink);
     font-family: var(--font-sans);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
   }
   ::selection {
-    background: var(--color-sea-300);
-    color: var(--color-ocean-950);
+    background: var(--color-lime-300);
+    color: var(--color-pine-950);
   }
   :focus-visible {
-    outline: 2px solid var(--color-sea-500);
+    outline: 2px solid var(--color-lime-400);
+    box-shadow: 0 0 0 4px var(--color-pine-900);
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -87,12 +80,23 @@
     }
   }
 
+  /* Eyebrow labels carry a short lime bar, as in the LGU profile. On light
+     surfaces the text stays dark green for contrast; on dark it can be lime. */
   .eyebrow {
     font-family: var(--font-sans);
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
+  }
+  .eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 1.15em;
+    margin-right: 0.6rem;
+    vertical-align: -0.25em;
+    background: var(--color-lime-400);
   }
 
   .display {
@@ -136,7 +140,7 @@
 /* Leaflet tweaks */
 .leaflet-container {
   font-family: var(--font-sans);
-  background: #cfe3e6;
+  background: #dfe7dc;
 }
 .leaflet-popup-content-wrapper {
   border-radius: 4px;

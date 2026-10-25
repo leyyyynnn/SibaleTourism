@@ -5,20 +5,20 @@ import { Wordmark } from "./Wordmark";
 export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-ocean-950 text-white/75">
+    <footer className="bg-pine-950 text-white/75">
       <div className="container-site grid gap-12 py-16 md:grid-cols-12 lg:py-20">
         <div className="md:col-span-5">
-          <Link href="/" className="inline-block text-white" aria-label="Concepcion, Romblon — home">
+          <Link href="/" className="inline-block text-white" aria-label="Sibale Tourism — home">
             <Wordmark />
           </Link>
           <p className="mt-6 max-w-sm text-sm leading-relaxed">
-            Sibale Island, in the Sibuyan Sea. One municipality of nine barangays in the province of Romblon, MIMAROPA, Philippines.
+            The tourism guide to Concepcion, Romblon — Sibale Island in the Verde Island Passage. Nine barangays, one island, MIMAROPA, Philippines.
           </p>
           <p className="mt-4 text-xs tracking-[0.2em] text-white/50">{site.coordinatesLabel}</p>
         </div>
 
         <nav aria-label="Footer" className="md:col-span-3">
-          <p className="eyebrow mb-4 text-sea-300">Explore</p>
+          <p className="eyebrow mb-4 text-lime-300">Explore</p>
           <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 text-sm md:grid-cols-1">
             {nav.map((item) => (
               <li key={item.href}>
@@ -31,10 +31,14 @@ export function SiteFooter() {
         </nav>
 
         <div className="md:col-span-4">
-          <p className="eyebrow mb-4 text-sea-300">Visitor information</p>
+          <p className="eyebrow mb-4 text-lime-300">Visitor information</p>
           <p className="text-sm text-white">{officialContacts.office}</p>
           <p className="mt-2 text-sm">
-            Official contact details are being confirmed.{" "}
+            <a href={`mailto:${officialContacts.email}`} className="break-all underline decoration-white/30 underline-offset-4 hover:text-white">
+              {officialContacts.email}
+            </a>
+          </p>
+          <p className="mt-2 text-sm">
             <Link href="/contact" className="underline decoration-white/30 underline-offset-4 hover:text-white">
               Send an inquiry
             </Link>
@@ -46,7 +50,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-white/10">
         <div className="container-site flex flex-col gap-2 py-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} Municipality of Concepcion, Romblon. Tourism information.</p>
+          <p>© {year} Municipality of Concepcion, Romblon · Sibale Tourism</p>
           <p>Travel details change. Confirm boat schedules and access locally before you travel.</p>
         </div>
       </div>

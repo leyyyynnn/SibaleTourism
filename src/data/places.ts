@@ -10,12 +10,12 @@ export type PlaceCategory =
   | "services";
 
 export const placeCategories: { id: PlaceCategory; label: string; color: string }[] = [
-  { id: "attractions", label: "Natural attractions", color: "#3f6b4e" },
-  { id: "beaches-viewpoints", label: "Beaches & viewpoints", color: "#0f8f8a" },
-  { id: "transport", label: "Ports & transport", color: "#0b50c8" },
+  { id: "attractions", label: "Natural attractions", color: "#1c4a40" },
+  { id: "beaches-viewpoints", label: "Beaches & viewpoints", color: "#7fa51a" },
+  { id: "transport", label: "Ports & transport", color: "#3b6e91" },
   { id: "accommodation", label: "Accommodation", color: "#9a6b2f" },
   { id: "dining", label: "Dining", color: "#b4532a" },
-  { id: "services", label: "Tourism info & services", color: "#0b2a40" },
+  { id: "services", label: "Tourism info & services", color: "#0f2b25" },
 ];
 
 export type MapPlace = {
