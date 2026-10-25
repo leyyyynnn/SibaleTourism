@@ -17,24 +17,22 @@ export function SiteFooter() {
           </p>
           <p className="mt-4 text-xs tracking-[0.2em] text-white/50">{site.coordinatesLabel}</p>
 
-          {/* Official emblems, shown at equal size as on government sites */}
-          <div className="mt-10 border-t border-white/10 pt-8">
-            <div className="flex items-center gap-4">
-              <Image
-                src="/images/logos/concepcion-seal.png"
-                alt="Official Seal of the Municipality of Concepcion"
-                width={80}
-                height={80}
-                className="h-[72px] w-[72px] shrink-0 sm:h-20 sm:w-20"
-              />
-              <span className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-white p-[11px] sm:h-20 sm:w-20 sm:p-3">
-                <Image src="/images/logos/bagong-pilipinas.png" alt="Bagong Pilipinas" width={600} height={559} className="h-auto w-full" />
-              </span>
-              <div className="ml-1 leading-tight">
-                <p className="text-[0.62rem] font-semibold tracking-[0.18em] text-white/50 uppercase">Republic of the Philippines</p>
-                <p className="mt-1 text-[0.62rem] font-semibold tracking-[0.18em] text-white/50 uppercase">Province of Romblon</p>
-                <p className="mt-1.5 text-sm font-semibold text-white">Municipality of Concepcion</p>
-              </div>
+          {/* Official emblems */}
+          <div className="mt-10 flex items-center gap-4">
+            <Image
+              src="/images/logos/concepcion-seal.png"
+              alt="Official Seal of the Municipality of Concepcion"
+              width={80}
+              height={80}
+              className="h-[72px] w-[72px] shrink-0 sm:h-20 sm:w-20"
+            />
+            <span className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-white p-[11px] sm:h-20 sm:w-20 sm:p-3">
+              <Image src="/images/logos/bagong-pilipinas.png" alt="Bagong Pilipinas" width={600} height={559} className="h-auto w-full" />
+            </span>
+            <div className="ml-1 leading-tight">
+              <p className="text-[0.62rem] font-semibold tracking-[0.18em] text-white/50 uppercase">Republic of the Philippines</p>
+              <p className="mt-1 text-[0.62rem] font-semibold tracking-[0.18em] text-white/50 uppercase">Province of Romblon</p>
+              <p className="mt-1.5 text-sm font-semibold text-white">Municipality of Concepcion</p>
             </div>
           </div>
         </div>
