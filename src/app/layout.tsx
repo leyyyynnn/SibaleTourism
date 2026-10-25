@@ -1,0 +1,58 @@
+import type { Metadata, Viewport } from "next";
+import { Fraunces, Montserrat } from "next/font/google";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { site } from "@/data/site";
+import "./globals.css";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  axes: ["SOFT", "WONK", "opsz"],
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: "Discover Concepcion · Sibale Island, Romblon",
+    template: "%s · Concepcion, Romblon",
+  },
+  description: site.description,
+  openGraph: {
+    type: "website",
+    siteName: "Discover Concepcion",
+    title: "Discover Concepcion · Sibale Island, Romblon",
+    description: site.description,
+    images: [{ url: "/images/og-concepcion.jpg", width: 1200, height: 630, alt: "Aerial view of Concepcion Bay, Sibale Island" }],
+    locale: "en_PH",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Discover Concepcion · Sibale Island, Romblon",
+    description: site.description,
+    images: ["/images/og-concepcion.jpg"],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#061826",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${montserrat.variable} ${fraunces.variable}`}>
+      <body>
+        <SiteHeader />
+        <main id="main">{children}</main>
+        <SiteFooter />
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Concepcion design tokens
+   Ocean (navigation, headings) · Sea (accents) · Sand (surfaces)
+   Forest (conservation) · Charcoal (text) · Signal (primary CTA,
+   the blue from the Figma draft's button)
+---------------------------------------------------------------- */
+@theme {
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --color-ocean-950: #061826;
+  --color-ocean-900: #0b2a40;
+  --color-ocean-800: #113a57;
+  --color-ocean-700: #17496c;
+  --color-ocean-500: #3b6e91;
+
+  --color-sea-600: #0c7b77;
+  --color-sea-500: #0f8f8a;
+  --color-sea-300: #6cc9c3;
+  --color-sea-100: #d9f1ee;
+
+  --color-sand-50: #fbf8f2;
+  --color-sand-100: #f4ede1;
+  --color-sand-200: #e9dfcd;
+  --color-sand-300: #d8c9ae;
+
+  --color-forest-900: #1f3527;
+  --color-forest-700: #2f4f3b;
+  --color-forest-500: #4f7a5c;
+
+  --color-charcoal: #1e2326;
+  --color-muted: #59636a;
+
+  --color-signal-600: #0b50c8;
+  --color-signal-700: #093f9f;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  body {
+    background: var(--color-sand-50);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-sea-300);
+    color: var(--color-ocean-950);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-sea-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-site {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    font-variation-settings: "SOFT" 50, "WONK" 0;
+  }
+
+  .prose-site p + p {
+    margin-top: 1.1em;
+  }
+
+  /* Contour-line texture for photo placeholders and accent bands */
+  .contours {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240' fill='none' stroke='%23ffffff' stroke-opacity='0.13' stroke-width='1'%3E%3Cpath d='M-10 60c40-30 80 20 120-5s70-40 140 0'/%3E%3Cpath d='M-10 95c45-25 85 25 125 0s75-35 135 5'/%3E%3Cpath d='M-10 130c40-20 90 30 130 5s70-30 130 5'/%3E%3Cpath d='M-10 165c50-30 80 25 120 0s80-40 140 0'/%3E%3Cpath d='M-10 200c40-25 90 20 130-5s70-30 130 5'/%3E%3Cpath d='M-10 25c45-20 85 20 125-5s75-30 135 0'/%3E%3C/svg%3E");
+    background-size: 240px 240px;
+  }
+}
+
+/* Reveal-on-scroll, restrained */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.9s var(--ease-out-soft),
+    transform 0.9s var(--ease-out-soft);
+}
+[data-reveal="shown"] {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Leaflet tweaks */
+.leaflet-container {
+  font-family: var(--font-sans);
+  background: #cfe3e6;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 4px;
+}
