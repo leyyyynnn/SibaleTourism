@@ -177,7 +177,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Suggested itineraries"
             title={<span id="itineraries-heading">Stay the night. Or three.</span>}
-            intro="Boats have historically crossed once a day, so even a short visit means an overnight stay. These are suggested plans, not tour packages."
+            intro="The motorboat leaves Recodo Port once a day at 10:00 AM, so even a short visit means at least one night. These are suggested plans, not tour packages."
           />
           <div className="mt-14 grid gap-px bg-pine-900/10 md:grid-cols-3">
             {itineraries.map((it) => (
@@ -415,10 +415,10 @@ function Intro() {
 
 function PlanYourVisit() {
   const legs = [
-    { from: "Manila", to: "Batangas Port", mode: "Bus", note: "Buses from Cubao or Buendia" },
-    { from: "Batangas Port", to: "Calapan", mode: "RoRo or fastcraft", note: "Crossing to Oriental Mindoro" },
-    { from: "Calapan", to: "Pinamalayan", mode: "Van (UV Express)", note: "Overland down the east coast" },
-    { from: "Pinamalayan", to: "Sibale", mode: "Passenger boat", note: "About 17 km. Historically one daily trip of around 2–3 hours" },
+    { from: "Buendia / PITX", to: "Batangas Pier", mode: "Bus · 10:00 PM", note: "2–2.5 hours · ₱268–290" },
+    { from: "Batangas Pier", to: "Calapan", mode: "RoRo · 1:00 AM", note: "2–2.5 hours · ₱600–720 + ₱60 terminal fee" },
+    { from: "Calapan", to: "Pinamalayan", mode: "Van or mini bus", note: "1.5–2.5 hours · ₱200" },
+    { from: "Recodo Port", to: "Sibale", mode: "Motorboat · 10:00 AM", note: "2.5–3 hours · ₱360" },
   ];
   return (
     <section aria-labelledby="plan-heading" className="relative isolate overflow-hidden bg-pine-950 py-24 text-white lg:py-32">
@@ -429,7 +429,7 @@ function PlanYourVisit() {
           light
           eyebrow="Plan your visit"
           title={<span id="plan-heading">Getting to Sibale takes some planning</span>}
-          intro="There is no airport, and no direct, year-round link to the mainland. Most travellers come by sea from Pinamalayan in Oriental Mindoro."
+          intro="There is no airport. From Metro Manila it is an overnight journey by bus, ferry and van to Pinamalayan in Oriental Mindoro, then a motorboat from Recodo Port. Budget about ₱1,563–1,705 one way."
         />
         <ol className="mt-14 grid gap-px overflow-hidden bg-white/10 md:grid-cols-4">
           {legs.map((l, i) => (
@@ -443,8 +443,8 @@ function PlanYourVisit() {
           ))}
         </ol>
         <div className="mt-8 max-w-3xl">
-          <Notice title="Confirm your crossing">
-            Boat times, fares and operators change. Confirm the current schedule with the Municipal Tourism Office or the boat operator in Pinamalayan before you travel. There is no bank or ATM on the island, so bring enough cash.
+          <Notice title="Check the boat before you go">
+            Two motorboats, Falcon Dos and Arcem Liner, take turns on alternate days, and trips are cancelled in bad weather. Confirm with the Municipal Tourism Office, keep a spare day, and bring enough cash: there is no bank or ATM on the island. A Carbon Footprint Mitigation Fee (₱50 for non-residents) is collected on arrival.
           </Notice>
         </div>
         <div className="mt-10 flex flex-wrap gap-4">

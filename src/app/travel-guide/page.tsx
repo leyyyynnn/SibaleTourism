@@ -3,13 +3,14 @@ import Link from "next/link";
 import { ArrowRight } from "@/components/Icons";
 import { ButtonLink, Notice, PageHeader, SourceList } from "@/components/ui";
 import { itineraries } from "@/data/itineraries";
+import { boatNote, mitigationFees, route, routeEdition, tripCost } from "@/data/route";
 import { directory, nationalEmergencyNumber } from "@/data/site";
 import { stays } from "@/data/stays";
 
 export const metadata: Metadata = {
   title: "Travel Guide",
   description:
-    "How to get to Concepcion (Sibale Island), Romblon: the route via Pinamalayan, getting around, when to go, what to pack, suggested itineraries and responsible travel.",
+    "How to get to Sibale (Concepcion, Romblon) from Metro Manila: bus, RoRo, van and the 10:00 AM motorboat from Recodo Port, with fares, the mitigation fee, where to stay and what to bring.",
 };
 
 const toc = [
@@ -21,26 +22,6 @@ const toc = [
   { id: "itineraries", label: "Itineraries" },
   { id: "stay-and-eat", label: "Stay & eat" },
   { id: "responsible-travel", label: "Responsible travel" },
-];
-
-const route = [
-  {
-    leg: "Manila → Batangas Port",
-    detail: "Buses run from Cubao and Buendia to Batangas City Port (DLTB, JAC Liner and JAM Liner have been reported).",
-  },
-  {
-    leg: "Batangas Port → Calapan, Oriental Mindoro",
-    detail: "Cross by RoRo ferry or fastcraft. Several operators serve this busy route.",
-  },
-  {
-    leg: "Calapan → Pinamalayan",
-    detail: "Take a UV Express van from the Calapan port terminal down the east coast of Mindoro.",
-  },
-  {
-    leg: "Pinamalayan → Concepcion (Sibale)",
-    detail:
-      "Take a passenger boat across about 17 km of open water. Travellers have reported one departure a day in the late morning, taking 2–3 hours, with the return trip early the next morning. The municipality has sought a modern steel-hulled ferry for the route, so confirm which vessel is running now.",
-  },
 ];
 
 export default function TravelGuidePage() {
@@ -79,27 +60,112 @@ export default function TravelGuidePage() {
               Getting there
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-              There is no airport on Sibale. The usual route runs through Batangas and Oriental Mindoro to Pinamalayan, then across by boat. Some travellers also come via Tablas Island in Romblon, but that route is not well documented.
+              There is no airport on Sibale. From Metro Manila, the route runs overnight: bus to Batangas, ferry to Calapan, van to Pinamalayan, then the 10:00 AM motorboat from Recodo Port. Leave Manila around 10:00 PM and you reach Sibale in the early afternoon of the next day.
             </p>
+            <p className="mt-2 text-sm text-muted">From Sibale Tourism’s step-by-step travel guide, {routeEdition} edition. Fares are estimates.</p>
+
             <ol className="mt-10 border-l border-pine-900/15">
-              {route.map((r, i) => (
-                <li key={r.leg} className="relative pb-10 pl-10 last:pb-0">
-                  <span className="absolute top-0 -left-[0.9rem] flex h-7 w-7 items-center justify-center rounded-full bg-pine-900 text-xs font-semibold text-white">
-                    {i + 1}
+              {route.map((r) => (
+                <li key={r.step} className="relative pb-12 pl-10 last:pb-0">
+                  <span className="absolute top-0 -left-[0.95rem] flex h-7 w-7 items-center justify-center rounded-full bg-pine-900 text-xs font-semibold text-lime-300">
+                    {r.step}
                   </span>
-                  <p className="text-lg font-semibold text-pine-900">{r.leg}</p>
-                  <p className="mt-2 max-w-2xl leading-relaxed text-muted">{r.detail}</p>
+                  <p className="eyebrow text-pine-700">{r.leg}</p>
+                  <p className="mt-2 text-2xl font-semibold text-pine-900">{r.title}</p>
+                  <p className="mt-2 max-w-2xl leading-relaxed text-muted">{r.how}</p>
+                  <dl className="mt-5 grid max-w-3xl gap-px bg-pine-900/10 text-sm sm:grid-cols-3">
+                    <div className="bg-cream-50 p-4">
+                      <dt className="text-xs text-muted">{r.step === 6 ? "On arrival" : "Departure"}</dt>
+                      <dd className="mt-1 font-medium text-pine-900">{r.departure}</dd>
+                    </div>
+                    <div className="bg-cream-50 p-4">
+                      <dt className="text-xs text-muted">{r.step === 4 ? "Layover" : r.step === 6 ? "Landing point" : "Travel time"}</dt>
+                      <dd className="mt-1 font-medium text-pine-900">{r.duration}</dd>
+                    </div>
+                    <div className="bg-cream-50 p-4">
+                      <dt className="text-xs text-muted">Est. fare</dt>
+                      <dd className="mt-1 space-y-0.5 font-medium text-pine-900">
+                        {r.fare.map((f) => (
+                          <span key={f.label} className="block">
+                            {f.amount} <span className="font-normal text-muted">· {f.label}</span>
+                          </span>
+                        ))}
+                      </dd>
+                    </div>
+                  </dl>
+                  <p className="mt-3 text-sm text-muted">
+                    <span className="font-semibold text-pine-900">{r.step === 4 ? "Layover spots" : r.step === 6 ? "Landing points" : "Options"}:</span> {r.options.join(" · ")}
+                  </p>
+                  <p className="mt-3 max-w-2xl border-l-2 border-lime-400 pl-3 text-sm leading-relaxed text-ink/80">
+                    <span className="font-semibold">Tip:</span> {r.tip}
+                  </p>
                 </li>
               ))}
             </ol>
-            <div className="mt-10 max-w-3xl">
-              <Notice title="Confirm before you travel">
-                No official boat schedule has been published here yet. Departure times, fares and vessels change, and trips are cancelled in rough weather. Check with the boat operator in Pinamalayan or the{" "}
+
+            <div className="mt-12 max-w-3xl">
+              <Notice title="About the boat">
+                {boatNote} Ask the{" "}
                 <Link href="/contact" className="font-semibold underline underline-offset-2">
                   Municipal Tourism Office
                 </Link>{" "}
-                a day ahead, and allow a spare day in your plans.
+                about today’s trip and the return schedule.
               </Notice>
+            </div>
+
+            <div className="mt-12 grid gap-8 lg:grid-cols-2">
+              <div>
+                <h3 className="text-xl font-semibold text-pine-900">Trip cost, one way</h3>
+                <table className="mt-4 w-full text-sm">
+                  <tbody className="divide-y divide-pine-900/10 border-y border-pine-900/10">
+                    {tripCost.items.map((c) => (
+                      <tr key={c.item}>
+                        <th scope="row" className="py-2.5 pr-4 text-left font-normal text-ink/85">
+                          {c.item}
+                        </th>
+                        <td className="py-2.5 text-right tabular-nums text-pine-900">{c.cost}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  <tfoot>
+                    <tr className="bg-pine-900 text-white">
+                      <th scope="row" className="px-3 py-3 text-left font-semibold">
+                        Total estimate
+                      </th>
+                      <td className="px-3 py-3 text-right font-bold tabular-nums text-lime-300">{tripCost.total}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+                <p className="mt-3 text-xs leading-relaxed text-muted">{tripCost.note}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-pine-900">Carbon Footprint Mitigation Fee</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  Collected on arrival by tourism officers at the port, to support the island’s conservation work.
+                </p>
+                <table className="mt-4 w-full text-sm">
+                  <thead>
+                    <tr className="bg-pine-900 text-white">
+                      <th scope="col" className="px-3 py-2.5 text-left font-semibold">
+                        Visitor
+                      </th>
+                      <th scope="col" className="px-3 py-2.5 text-right font-semibold text-lime-300">
+                        Fee
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-pine-900/10 border-b border-pine-900/10">
+                    {mitigationFees.map((f) => (
+                      <tr key={f.visitor}>
+                        <th scope="row" className="px-3 py-2.5 text-left font-normal text-ink/85">
+                          {f.visitor}
+                        </th>
+                        <td className="px-3 py-2.5 text-right tabular-nums text-pine-900">{f.fee}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
 
@@ -315,7 +381,7 @@ export default function TravelGuidePage() {
                 <ButtonLink href="/contact">Contact the tourism office</ButtonLink>
               </div>
             </div>
-            <SourceList ids={["lguProfile", "cvoAttractions", "rnnBagulayag", "romblonParadiseHowTo", "xinkule2015", "tribune2022"]} />
+            <SourceList ids={["sibaleTourismRoute", "lguProfile", "cvoAttractions"]} />
           </section>
         </div>
       </div>

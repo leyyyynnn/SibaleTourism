@@ -18,6 +18,13 @@ export const sources = {
     title: "Concepcion Local Government Unit Profile",
     publisher: "LGU Concepcion",
   },
+  sibaleTourismRoute: {
+    id: "sibaleTourismRoute",
+    title: "How to Get to Sibale: A Step-by-Step Travel Guide (Updated March 2026 Edition)",
+    publisher: "Sibale Tourism (Facebook)",
+    date: "March 2026",
+    url: "https://www.facebook.com/share/p/1E4YpV6fEt/",
+  },
   cvoAttractions: {
     id: "cvoAttractions",
     title: "Major Visitor Attractions",

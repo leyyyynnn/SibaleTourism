@@ -14,8 +14,8 @@ export type Itinerary = {
 
 /**
  * Proposed itineraries only — not tour packages. Built around the boat pattern
- * reported by travellers (one departure from Pinamalayan in the late morning,
- * a return early the next day). Confirm before publishing.
+ * in Sibale Tourism’s March 2026 guide (10:00 AM motorboat from Recodo Port,
+ * boats alternating and weather-dependent). Confirm return times locally.
  */
 export const itineraries: Itinerary[] = [
   {
@@ -24,19 +24,19 @@ export const itineraries: Itinerary[] = [
     length: "1 night",
     mood: "A first look",
     summary:
-      "The shortest practical visit. Cross in the late morning, spend the afternoon on the beach and the evening by the bay, and take the early boat back.",
+      "The shortest practical visit. Arrive on the 10:00 AM boat, spend the afternoon on the beach and the evening by the bay, and take the next boat back.",
     days: [
       {
         label: "Day 1",
         stops: [
-          { time: "Late morning", title: "Boat from Pinamalayan", note: "Allow 2–3 hours or more. Confirm the departure the day before." },
+          { time: "10:00 AM", title: "Motorboat from Recodo Port", note: "2.5–3 hours. Fill out the manifest early and pick a left-side window seat." },
           { time: "Afternoon", title: "Quebrada Beach", note: "Swim in clear water facing Mount Batariya.", href: "/destinations/quebrada-beach" },
           { time: "Sunset", title: "Concepcion Bay", note: "Watch the light fall on Mount Batariya from the Poblacion waterfront.", href: "/destinations/mount-batariya" },
         ],
       },
       {
         label: "Day 2",
-        stops: [{ time: "Early morning", title: "Return crossing", note: "Confirm the return time when you arrive." }],
+        stops: [{ time: "Morning", title: "Return crossing", note: "Ask the Tourism Office for the return time when you arrive." }],
       },
     ],
   },
@@ -51,7 +51,7 @@ export const itineraries: Itinerary[] = [
       {
         label: "Day 1",
         stops: [
-          { time: "Late morning", title: "Crossing from Pinamalayan", note: "Confirm the schedule with the operator." },
+          { time: "10:00 AM", title: "Motorboat from Recodo Port", note: "Boats alternate and depend on the weather. Confirm the day before." },
           { time: "Evening", title: "Settle in at the Poblacion", note: "Arrange a habal-habal driver or guide for the next day." },
         ],
       },
@@ -65,7 +65,7 @@ export const itineraries: Itinerary[] = [
       },
       {
         label: "Day 3",
-        stops: [{ time: "Early morning", title: "Return crossing", note: "Keep a buffer in case sea conditions delay the trip." }],
+        stops: [{ time: "Morning", title: "Return crossing", note: "Keep a buffer in case the weather cancels the trip." }],
       },
     ],
   },
@@ -100,7 +100,7 @@ export const itineraries: Itinerary[] = [
       },
       {
         label: "Day 4",
-        stops: [{ time: "Early morning", title: "Return crossing", note: "Spare time is built in for weather delays." }],
+        stops: [{ time: "Morning", title: "Return crossing", note: "Spare time is built in for weather delays." }],
       },
     ],
   },
