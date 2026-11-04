@@ -69,11 +69,11 @@ export default function HomePage() {
             <Reveal>
               <p className="eyebrow mb-5 text-lime-300">Under the water</p>
               <h2 id="reef-heading" className="display text-[2.4rem] sm:text-5xl">
-                Fifteen dive sites in the <em className="text-lime-300">Verde Island Passage</em>
+                Spectacular dive sites in the <em className="text-lime-300">Verde Island Passage</em>
               </h2>
               <div className="prose-site mt-6 max-w-lg text-[1.02rem] leading-relaxed text-white/75">
                 <p>
-                  Sibale sits inside the Verde Island Passage Marine Corridor, recognised around the world as a hotspot of marine biodiversity. Fifteen dive sites ring the island, and most have yet to be explored.
+                  Sibale sits inside the Verde Island Passage Marine Corridor, recognised around the world as a hotspot of marine biodiversity. Dive sites ring the island, and many have yet to be explored.
                 </p>
                 <p>
                   Dive the towering Coral Cathedral off San Vicente, or the wreck of the M/V Mactan, lost in 1973 and now a protected reef full of fish.
@@ -160,14 +160,15 @@ export default function HomePage() {
               <TextLink href="/travel-guide#stay-and-eat">Accommodation details</TextLink>
             </div>
           </div>
-          <ul className="grid content-start gap-px bg-pine-900/10 sm:grid-cols-2 lg:col-span-7">
-            {stays.map((s) => (
-              <li key={s.name} className="flex items-baseline justify-between gap-4 bg-cream-50 px-6 py-6">
+          <ol className="content-start divide-y divide-pine-900/10 border-y border-pine-900/10 lg:col-span-6 lg:col-start-7">
+            {stays.map((s, i) => (
+              <li key={s.name} className="grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 py-5">
+                <span className="text-sm font-semibold tabular-nums text-muted">{String(i + 1).padStart(2, "0")}</span>
                 <span className="text-lg font-semibold text-pine-900">{s.name}</span>
-                <span className="eyebrow shrink-0 text-muted">{s.type}</span>
+                <span className="eyebrow text-muted">{s.type}</span>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       </section>
 
@@ -337,7 +338,7 @@ function Hero() {
         </h1>
         <p className="mt-5 text-[clamp(1.25rem,3vw,2.25rem)] font-normal tracking-wide text-white/95">{site.tagline}.</p>
         <p className="mt-6 max-w-xl text-[0.98rem] leading-relaxed text-white/75 sm:text-lg">
-          Sheer cliffs, quiet white-sand beaches and fifteen dive sites on an island of the Verde Island Passage.
+          Sheer cliffs, tranquil white-sand beaches, and spectacular dive sites in the heart of the Verde Island Passage.
         </p>
         <div className="mt-10 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center">
           <ButtonLink href="/destinations" variant="lime">
@@ -349,8 +350,7 @@ function Hero() {
         </div>
       </div>
 
-      <div className="container-site flex items-end justify-between pb-6 text-[0.7rem] tracking-[0.18em] text-white/60">
-        <span>{site.coordinatesLabel}</span>
+      <div className="container-site flex items-end justify-end pb-6 text-[0.7rem] tracking-[0.18em] text-white/60">
         <span className="hidden sm:block">CONCEPCION BAY AT DUSK</span>
       </div>
     </section>
@@ -362,7 +362,7 @@ function Intro() {
     { value: "9", label: "barangays" },
     { value: "2,007", unit: "ha", label: "land area" },
     { value: "73,727", unit: "ha", label: "municipal waters" },
-    { value: "15", label: "dive sites" },
+    { value: "6", label: "white-sand beaches" },
   ];
   return (
     <section aria-labelledby="intro-heading" className="pt-24 lg:pt-32">
@@ -407,7 +407,7 @@ function Intro() {
             </div>
           ))}
         </dl>
-        <p className="mt-3 text-[0.7rem] text-muted">Source: Concepcion LGU Profile.</p>
+        <p className="mt-3 text-[0.7rem] text-muted">Sources: Concepcion LGU Profile; Municipal Tourism Office.</p>
       </div>
     </section>
   );
@@ -415,10 +415,10 @@ function Intro() {
 
 function PlanYourVisit() {
   const legs = [
-    { from: "Buendia / PITX", to: "Batangas Pier", mode: "Bus · 10:00 PM", note: "2–2.5 hours · ₱268–290" },
-    { from: "Batangas Pier", to: "Calapan", mode: "RoRo · 1:00 AM", note: "2–2.5 hours · ₱600–720 + ₱60 terminal fee" },
+    { from: "Buendia / PITX", to: "Batangas Pier", mode: "Bus · 10:00 PM", note: "2–2.5 hours · ₱280–310" },
+    { from: "Batangas Pier", to: "Calapan", mode: "RoRo · 1:00 AM", note: "2–2.5 hours · ₱680–720 + ₱90 terminal fee" },
     { from: "Calapan", to: "Pinamalayan", mode: "Van or mini bus", note: "1.5–2.5 hours · ₱200" },
-    { from: "Recodo Port", to: "Sibale", mode: "Motorboat · 10:00 AM", note: "2.5–3 hours · ₱360" },
+    { from: "Recodo Port", to: "Sibale", mode: "Motorboat · 10:00 AM", note: "2.5–3 hours · ₱390" },
   ];
   return (
     <section aria-labelledby="plan-heading" className="relative isolate overflow-hidden bg-pine-950 py-24 text-white lg:py-32">
@@ -429,7 +429,7 @@ function PlanYourVisit() {
           light
           eyebrow="Plan your visit"
           title={<span id="plan-heading">Getting to Sibale takes some planning</span>}
-          intro="There is no airport. From Metro Manila it is an overnight journey by bus, ferry and van to Pinamalayan in Oriental Mindoro, then a motorboat from Recodo Port. Budget about ₱1,563–1,705 one way."
+          intro="There is no airport. From Metro Manila it is an overnight journey by bus, ferry and van to Pinamalayan in Oriental Mindoro, then a motorboat from Recodo Port. Budget about ₱1,715–1,785 one way."
         />
         <ol className="mt-14 grid gap-px overflow-hidden bg-white/10 md:grid-cols-4">
           {legs.map((l, i) => (
@@ -444,7 +444,7 @@ function PlanYourVisit() {
         </ol>
         <div className="mt-8 max-w-3xl">
           <Notice title="Check the boat before you go">
-            Two motorboats, Falcon Dos and Arcem Liner, take turns on alternate days, and trips are cancelled in bad weather. Confirm with the Municipal Tourism Office, keep a spare day, and bring enough cash: there is no bank or ATM on the island. A Carbon Footprint Mitigation Fee (₱50 for non-residents) is collected on arrival.
+            Two motorboats, Falcon Dos and Arcem Liner, take turns on alternate days, and trips are cancelled in bad weather. Confirm with the Municipal Tourism Office, keep a spare day, and bring enough cash: there is no bank or ATM on the island. A <Link href="/carbon-footprint-fee" className="font-semibold underline underline-offset-2">Carbon Footprint Mitigation Fee</Link> (₱50 for local tourists, ₱100 for foreign tourists) is collected on arrival.
           </Notice>
         </div>
         <div className="mt-10 flex flex-wrap gap-4">

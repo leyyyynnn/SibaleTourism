@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { nationalEmergencyNumber, nav, officialContacts, site } from "@/data/site";
+import { nationalEmergencyNumber, nav, officialContacts } from "@/data/site";
 import { Wordmark } from "./Wordmark";
 
 export function SiteFooter() {
@@ -15,7 +15,6 @@ export function SiteFooter() {
           <p className="mt-6 max-w-sm text-sm leading-relaxed">
             The tourism guide to Concepcion, Romblon — Sibale Island in the Verde Island Passage. Nine barangays, one island, MIMAROPA, Philippines.
           </p>
-          <p className="mt-4 text-xs tracking-[0.2em] text-white/50">{site.coordinatesLabel}</p>
 
           {/* Official emblems */}
           <div className="mt-10 flex items-center gap-4">
@@ -63,6 +62,11 @@ export function SiteFooter() {
               Send an inquiry
             </Link>
           </p>
+          <p className="mt-2 text-sm">
+            <Link href="/carbon-footprint-fee" className="underline decoration-white/30 underline-offset-4 hover:text-white">
+              Carbon Footprint Mitigation Fee
+            </Link>
+          </p>
           <p className="mt-6 text-sm">
             Emergency (nationwide): <a href={`tel:${nationalEmergencyNumber}`} className="font-semibold text-white">{nationalEmergencyNumber}</a>
           </p>
@@ -70,7 +74,18 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-white/10">
         <div className="container-site flex flex-col gap-2 py-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} Municipality of Concepcion, Romblon · Sibale Tourism</p>
+          <p>
+            © {year} Municipality of Concepcion, Romblon · Sibale Tourism
+            <span className="mx-2 text-white/25" aria-hidden="true">|</span>
+            Website developed by <a
+              href="https://leyndesigns.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white/80 underline decoration-white/30 underline-offset-4 hover:text-lime-300 hover:decoration-lime-300"
+            >
+              Johnlien Falculan<span className="sr-only"> (portfolio, opens in a new tab)</span>
+            </a>
+          </p>
           <p>Travel details change. Confirm boat schedules and access locally before you travel.</p>
         </div>
       </div>

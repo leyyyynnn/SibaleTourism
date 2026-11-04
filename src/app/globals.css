@@ -145,3 +145,8 @@
 .leaflet-popup-content-wrapper {
   border-radius: 4px;
 }
+/* Keep Leaflet's panes and controls below the fixed site header */
+.leaflet-container {
+  isolation: isolate;
+  z-index: 0;
+}

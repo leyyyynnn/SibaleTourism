@@ -18,6 +18,11 @@ export const sources = {
     title: "Concepcion Local Government Unit Profile",
     publisher: "LGU Concepcion",
   },
+  cfmfOrdinance: {
+    id: "cfmfOrdinance",
+    title: "Questions & Answers on the Carbon Footprint Mitigation Fee (Municipal Ordinance No. 2024-12)",
+    publisher: "Office of the Municipal Mayor and Municipal Treasurer’s Office, Concepcion",
+  },
   sibaleTourismRoute: {
     id: "sibaleTourismRoute",
     title: "How to Get to Sibale: A Step-by-Step Travel Guide (Updated March 2026 Edition)",

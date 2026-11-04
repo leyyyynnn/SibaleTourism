@@ -330,7 +330,10 @@ export const destinations: Destination[] = [
     ],
     verification: "needs-confirmation",
     toConfirm: ["Barangay", "Access route", "Official description from the Municipal Tourism Office"],
-    images: [],
+    images: [
+      a("guiob-beach-1", "Aerial view of Guiob Beach: a long white-sand shore backed by coconut palms, with turquoise shallows and reef beyond", 1788, 1003),
+      a("guiob-beach-2", "Guiob Beach from directly above, with a few houses and outrigger boats among the palms and coral patches in the clear water", 1787, 1002),
+    ],
     photoBrief: "Guiob Beach shoreline.",
     sources: ["romblonParadiseHowTo", "sandeeGuiwanon"],
   },

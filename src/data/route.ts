@@ -27,8 +27,7 @@ export const route: RouteStop[] = [
     departure: "Take the 10:00 PM bus.",
     duration: "2 to 2.5 hours via Skyway/SLEX",
     fare: [
-      { label: "From Buendia", amount: "₱290" },
-      { label: "From PITX", amount: "₱268" },
+      { label: "Buendia or PITX", amount: "₱280–310" },
     ],
     tip: "Leave by 10:00 PM so you can catch the 1:00 AM ferry from Batangas, which connects with the 10:00 AM boat to Sibale.",
   },
@@ -41,8 +40,8 @@ export const route: RouteStop[] = [
     departure: "Take the 1:00 AM RoRo.",
     duration: "2 to 2.5 hours",
     fare: [
-      { label: "Regular economy", amount: "₱600–720" },
-      { label: "Terminal fee", amount: "₱60" },
+      { label: "Regular economy", amount: "₱680–720" },
+      { label: "Terminal fee", amount: "₱90" },
     ],
     tip: "The 12:00 AM ferry is an option if you arrive at the pier early, but expect to wait in Calapan for the first van or mini bus.",
   },
@@ -76,7 +75,7 @@ export const route: RouteStop[] = [
     how: "At Recodo Port, fill out the passenger manifest to secure your seat.",
     departure: "The motorboat leaves at 10:00 AM.",
     duration: "2.5 to 3 hours",
-    fare: [{ label: "Regular", amount: "₱360" }],
+    fare: [{ label: "Regular", amount: "₱390" }],
     tip: "Get a window seat on the left side for the best views of the island’s coastline as you arrive.",
   },
   {
@@ -87,7 +86,7 @@ export const route: RouteStop[] = [
     how: "Get off at Poblacion or Sampong and pay the Carbon Footprint Mitigation Fee to the tourism officers at the port.",
     departure: "Pay the fee on arrival.",
     duration: "Poblacion or Sampong",
-    fare: [{ label: "Mitigation fee (non-resident)", amount: "₱50" }],
+    fare: [{ label: "Mitigation fee, local tourist", amount: "₱50" }],
     tip: "The fee supports the island’s conservation efforts.",
   },
 ];
@@ -95,24 +94,24 @@ export const route: RouteStop[] = [
 /** Carbon Footprint Mitigation Fee, collected on arrival. */
 export const mitigationFees = [
   { visitor: "Foreign tourist", fee: "₱100" },
-  { visitor: "Non-resident", fee: "₱50" },
+  { visitor: "Local tourist (non-resident)", fee: "₱50" },
   { visitor: "Student", fee: "₱40" },
   { visitor: "Person with disability", fee: "₱40" },
   { visitor: "Senior citizen", fee: "₱40" },
-  { visitor: "Child aged 14 and below", fee: "No fee" },
+  { visitor: "Child under 14 years old", fee: "No fee" },
 ];
 
 export const tripCost = {
   items: [
-    { item: "Bus to Batangas Pier", cost: "₱268–290" },
-    { item: "RoRo to Calapan", cost: "₱600–720" },
-    { item: "Batangas Pier terminal fee", cost: "₱60" },
+    { item: "Bus to Batangas Pier", cost: "₱280–310" },
+    { item: "RoRo to Calapan", cost: "₱680–720" },
+    { item: "Batangas Pier terminal fee", cost: "₱90" },
     { item: "Van or mini bus to Pinamalayan", cost: "₱200" },
     { item: "Tricycle to Recodo Port", cost: "₱25" },
-    { item: "Motorboat to Sibale", cost: "₱360" },
-    { item: "Mitigation fee", cost: "₱50" },
+    { item: "Motorboat to Sibale", cost: "₱390" },
+    { item: "Carbon Footprint Mitigation Fee (local tourist)", cost: "₱50" },
   ],
-  total: "₱1,563–1,705",
+  total: "₱1,715–1,785",
   note: "Estimates are for regular passengers, one way, and exclude meals. Students, senior citizens and persons with disabilities get a 20% discount on all transport fares (not on terminal or mitigation fees).",
 };
 

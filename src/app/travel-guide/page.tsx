@@ -113,43 +113,57 @@ export default function TravelGuidePage() {
               </Notice>
             </div>
 
-            <div className="mt-12 grid gap-8 lg:grid-cols-2">
-              <div>
+            <div className="mt-12 grid gap-10 lg:grid-cols-2">
+              <div className="flex flex-col">
                 <h3 className="text-xl font-semibold text-pine-900">Trip cost, one way</h3>
+                <p className="mt-2 min-h-[3rem] text-sm leading-relaxed text-muted">Regular fares per person from Metro Manila to Sibale, excluding meals.</p>
                 <table className="mt-4 w-full text-sm">
-                  <tbody className="divide-y divide-pine-900/10 border-y border-pine-900/10">
+                  <thead>
+                    <tr className="bg-pine-900 text-white">
+                      <th scope="col" className="px-4 py-3 text-left font-semibold">
+                        Item
+                      </th>
+                      <th scope="col" className="px-4 py-3 text-right font-semibold text-lime-300">
+                        Cost
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-pine-900/10">
                     {tripCost.items.map((c) => (
                       <tr key={c.item}>
-                        <th scope="row" className="py-2.5 pr-4 text-left font-normal text-ink/85">
+                        <th scope="row" className="px-4 py-3 text-left font-normal text-ink/85">
                           {c.item}
                         </th>
-                        <td className="py-2.5 text-right tabular-nums text-pine-900">{c.cost}</td>
+                        <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-pine-900">{c.cost}</td>
                       </tr>
                     ))}
                   </tbody>
                   <tfoot>
-                    <tr className="bg-pine-900 text-white">
-                      <th scope="row" className="px-3 py-3 text-left font-semibold">
+                    <tr className="border-t-2 border-pine-900 bg-cream-100">
+                      <th scope="row" className="px-4 py-3 text-left font-semibold text-pine-900">
                         Total estimate
                       </th>
-                      <td className="px-3 py-3 text-right font-bold tabular-nums text-lime-300">{tripCost.total}</td>
+                      <td className="whitespace-nowrap px-4 py-3 text-right font-bold tabular-nums text-pine-900">{tripCost.total}</td>
                     </tr>
                   </tfoot>
                 </table>
                 <p className="mt-3 text-xs leading-relaxed text-muted">{tripCost.note}</p>
               </div>
-              <div>
+              <div className="flex flex-col">
                 <h3 className="text-xl font-semibold text-pine-900">Carbon Footprint Mitigation Fee</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
-                  Collected on arrival by tourism officers at the port, to support the island’s conservation work.
+                <p className="mt-2 min-h-[3rem] text-sm leading-relaxed text-muted">
+                  Paid once per visit at the port or a collection point (Municipal Ordinance No. 2024-12).{" "}
+                  <Link href="/carbon-footprint-fee" className="font-semibold text-pine-900 underline underline-offset-4">
+                    Full details
+                  </Link>
                 </p>
                 <table className="mt-4 w-full text-sm">
                   <thead>
                     <tr className="bg-pine-900 text-white">
-                      <th scope="col" className="px-3 py-2.5 text-left font-semibold">
+                      <th scope="col" className="px-4 py-3 text-left font-semibold">
                         Visitor
                       </th>
-                      <th scope="col" className="px-3 py-2.5 text-right font-semibold text-lime-300">
+                      <th scope="col" className="px-4 py-3 text-right font-semibold text-lime-300">
                         Fee
                       </th>
                     </tr>
@@ -157,10 +171,10 @@ export default function TravelGuidePage() {
                   <tbody className="divide-y divide-pine-900/10 border-b border-pine-900/10">
                     {mitigationFees.map((f) => (
                       <tr key={f.visitor}>
-                        <th scope="row" className="px-3 py-2.5 text-left font-normal text-ink/85">
+                        <th scope="row" className="px-4 py-3 text-left font-normal text-ink/85">
                           {f.visitor}
                         </th>
-                        <td className="px-3 py-2.5 text-right tabular-nums text-pine-900">{f.fee}</td>
+                        <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-pine-900">{f.fee}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -331,7 +345,7 @@ export default function TravelGuidePage() {
             </p>
             <ul className="mt-10 grid gap-px bg-pine-900/10 sm:grid-cols-2">
               {stays.map((st) => (
-                <li key={st.name} className="flex flex-col justify-between gap-4 bg-cream-50 p-6">
+                <li key={st.name} className="flex flex-col justify-between gap-4 bg-cream-50 p-6 sm:odd:last:col-span-2">
                   <div>
                     <p className="eyebrow text-pine-700">{st.type}</p>
                     <p className="mt-2 text-xl font-semibold text-pine-900">{st.name}</p>

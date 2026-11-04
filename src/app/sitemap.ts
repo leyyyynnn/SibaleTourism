@@ -5,5 +5,6 @@ import { nav, site } from "@/data/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = nav.map((n) => ({ url: `${site.url}${n.href === "/" ? "" : n.href}`, changeFrequency: "monthly" as const }));
   const places = destinations.map((d) => ({ url: `${site.url}/destinations/${d.slug}`, changeFrequency: "monthly" as const }));
-  return [...pages, ...places];
+  const extra = [{ url: `${site.url}/carbon-footprint-fee`, changeFrequency: "yearly" as const }];
+  return [...pages, ...extra, ...places];
 }

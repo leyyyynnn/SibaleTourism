@@ -106,7 +106,7 @@ export function MapExplorer({ compact = false }: { compact?: boolean }) {
   const emptyActive = placeCategories.filter((c) => active.has(c.id) && counts(c.id) === 0);
 
   return (
-    <div className="grid overflow-hidden border border-pine-900/10 bg-white lg:grid-cols-[22rem_1fr]">
+    <div className="relative isolate z-0 grid overflow-hidden border border-pine-900/10 bg-white lg:grid-cols-[22rem_1fr]">
       {/* Sidebar */}
       <div className="order-2 flex flex-col border-t border-pine-900/10 lg:order-1 lg:border-t-0 lg:border-r">
         <div role="group" aria-labelledby={filterLabelId} className="border-b border-pine-900/10 p-5">
