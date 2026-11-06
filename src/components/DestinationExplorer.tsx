@@ -73,11 +73,19 @@ export function DestinationExplorer({ initialCategory }: { initialCategory?: str
         </label>
       </div>
 
-      <p className="mt-6 text-sm text-muted" aria-live="polite">
-        {results.length} {results.length === 1 ? "place" : "places"}
-        {filter !== "All" && ` in ${filter}`}
-        {query && ` matching “${query}”`}
-      </p>
+      <div className="mt-6 flex flex-col gap-2 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <p aria-live="polite">
+          {results.length} {results.length === 1 ? "place" : "places"}
+          {filter !== "All" && ` in ${filter}`}
+          {query && ` matching “${query}”`}
+        </p>
+        <p className="flex items-center gap-2 text-xs">
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#b58a2e]" aria-hidden="true" />
+          <span>
+            <span className="font-semibold text-[#7a5a1e]">Details to confirm:</span> ask the Tourism Office about access before you go
+          </span>
+        </p>
+      </div>
 
       {results.length === 0 ? (
         <div className="mt-10 border border-dashed border-pine-900/20 p-12 text-center">

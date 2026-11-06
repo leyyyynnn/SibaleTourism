@@ -135,8 +135,11 @@ export const destinations: Destination[] = [
     ],
     visitorNotes: ["This is a heritage site in a residential area. Ask the Municipal Tourism Office before visiting."],
     verification: "needs-confirmation",
-    toConfirm: ["Trail opening and access", "Photographs of the carved rock"],
-    images: [],
+    toConfirm: ["Trail opening and access"],
+    images: [
+      a("tinigban-trail-1", "The rock formation at Tinigban: a dry stone channel where the waterfall once fell, ending in a small carved opening above a leaf-filled pool, surrounded by forest", 2000, 1500),
+      a("tinigban-trail-2", "Close view of the carved opening at the foot of the old waterfall channel at Tinigban, with water seeping down the dark rock", 1500, 2000),
+    ],
     photoBrief: "The carved rock at Tinigban and the old waterfall valley.",
     sources: ["cvoAttractions", "lguProfile"],
   },

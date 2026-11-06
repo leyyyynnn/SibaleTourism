@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { DestinationExplorer } from "@/components/DestinationExplorer";
 import { MapExplorer } from "@/components/MapExplorer";
-import { Notice, PageHeader, SectionHeading } from "@/components/ui";
+import { PageHeader, SectionHeading } from "@/components/ui";
+import { destinations } from "@/data/destinations";
 
 export const metadata: Metadata = {
   title: "Destinations",
@@ -24,10 +25,10 @@ export default async function DestinationsPage({
       />
       <section className="py-16 lg:py-24">
         <div className="container-site">
-          <div className="mb-12 max-w-3xl">
-            <Notice title="About this list">
-              Descriptions come from the Concepcion Convention and Visitors’ Office and the LGU Profile. Places marked <strong>Details to confirm</strong> still need access or location details from the Municipal Tourism Office.
-            </Notice>
+          <div className="mb-14 max-w-2xl">
+            <p className="eyebrow text-pine-700">On the island</p>
+            <h2 className="display mt-4 text-4xl text-pine-900 sm:text-5xl">{destinations.length} places to see on Sibale</h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted">Descriptions from the Concepcion Convention and Visitors’ Office and the LGU Profile.</p>
           </div>
           <DestinationExplorer initialCategory={category} />
         </div>
