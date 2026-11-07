@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { nationalEmergencyNumber, nav, officialContacts } from "@/data/site";
+import { nationalEmergencyNumber, nav, officialContacts, telHref } from "@/data/site";
 import { Wordmark } from "./Wordmark";
 
 export function SiteFooter() {
@@ -57,6 +57,13 @@ export function SiteFooter() {
               {officialContacts.email}
             </a>
           </p>
+          {officialContacts.phone && (
+            <p className="mt-2 text-sm">
+              <a href={telHref(officialContacts.phone)} className="tabular-nums underline decoration-white/30 underline-offset-4 hover:text-white">
+                {officialContacts.phone}
+              </a>
+            </p>
+          )}
           <p className="mt-2 text-sm">
             <Link href="/contact" className="underline decoration-white/30 underline-offset-4 hover:text-white">
               Send an inquiry
@@ -68,7 +75,11 @@ export function SiteFooter() {
             </Link>
           </p>
           <p className="mt-6 text-sm">
-            Emergency (nationwide): <a href={`tel:${nationalEmergencyNumber}`} className="font-semibold text-white">{nationalEmergencyNumber}</a>
+            Emergency: <a href={`tel:${nationalEmergencyNumber}`} className="font-semibold text-white">{nationalEmergencyNumber}</a>
+            <span className="mx-1.5 text-white/30">·</span>
+            <Link href="/travel-guide#safety" className="underline decoration-white/30 underline-offset-4 hover:text-white">
+              Local hotlines
+            </Link>
           </p>
         </div>
       </div>

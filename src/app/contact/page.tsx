@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Mail, Phone } from "@/components/Icons";
+import { EmergencyHotlines } from "@/components/EmergencyHotlines";
 import { InquiryForm } from "@/components/InquiryForm";
 import { PageHeader } from "@/components/ui";
-import { directory, nationalEmergencyNumber, officialContacts } from "@/data/site";
+import { directory, officialContacts, telHref } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -49,13 +50,26 @@ export default function ContactPage() {
                   <Phone size={18} className="mt-0.5 shrink-0 text-lime-300" />
                   <div>
                     <dt className="sr-only">Phone</dt>
-                    <dd className="text-white/70">{c.phone ?? "Phone number to be added"}</dd>
+                    <dd>
+                      {c.phone ? (
+                        <a href={telHref(c.phone)} className="font-medium tabular-nums underline decoration-white/30 underline-offset-4 hover:decoration-white">
+                          {c.phone}
+                        </a>
+                      ) : (
+                        <span className="text-white/70">Phone number to be added</span>
+                      )}
+                    </dd>
                   </div>
                 </div>
               </dl>
               <p className="mt-6 border-t border-white/10 pt-5 text-xs leading-relaxed text-white/60">{c.address}</p>
             </div>
 
+            <div>
+              <p className="eyebrow mb-4 text-[#b42318]">Emergency hotlines</p>
+              <EmergencyHotlines columns={1} />
+              <p className="mt-3 text-xs text-muted">Do not use the inquiry form or email for urgent help.</p>
+            </div>
             <div>
               <p className="eyebrow mb-4 text-pine-700">Other municipal offices</p>
               <ul className="divide-y divide-pine-900/10 border-y border-pine-900/10">
@@ -71,16 +85,6 @@ export default function ContactPage() {
               </ul>
             </div>
 
-            <div className="border-l-2 border-[#b42318] pl-5">
-              <p className="font-semibold text-pine-900">In an emergency</p>
-              <p className="mt-1 text-sm text-muted">
-                Call the national emergency hotline,{" "}
-                <a href={`tel:${nationalEmergencyNumber}`} className="font-semibold text-pine-900">
-                  {nationalEmergencyNumber}
-                </a>
-                . Do not use this form or email for urgent help.
-              </p>
-            </div>
           </aside>
         </div>
       </section>

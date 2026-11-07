@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { inquiryTopics, validateInquiry, type FieldErrors } from "@/lib/inquiry";
 
 type State =
@@ -9,10 +9,77 @@ type State =
   | { kind: "sent"; delivered: boolean }
   | { kind: "error"; message: string };
 
+/** Web3Forms' shared hCaptcha site key for free plans (docs.web3forms.com). */
+const HCAPTCHA_SITEKEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
+const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+/** Forms filled faster than this are almost certainly bots. */
+const MIN_FILL_MS = 4000;
+/** One inquiry per browser per this many milliseconds. */
+const COOLDOWN_MS = 2 * 60 * 1000;
+const COOLDOWN_KEY = "sibale-inquiry-last-sent";
+
+type HCaptchaApi = {
+  render: (el: HTMLElement, opts: { sitekey: string; theme?: string; "expired-callback"?: () => void }) => string;
+  getResponse: (id: string) => string;
+  reset: (id: string) => void;
+};
+declare global {
+  interface Window {
+    hcaptcha?: HCaptchaApi;
+    onSibaleHcaptchaLoad?: () => void;
+  }
+}
+
+function lastSent(): number {
+  try {
+    return Number(localStorage.getItem(COOLDOWN_KEY)) || 0;
+  } catch {
+    return 0;
+  }
+}
+function markSent() {
+  try {
+    localStorage.setItem(COOLDOWN_KEY, String(Date.now()));
+  } catch {
+    /* storage unavailable: skip the cooldown */
+  }
+}
+
 export function InquiryForm() {
   const [state, setState] = useState<State>({ kind: "idle" });
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [captchaError, setCaptchaError] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const captchaRef = useRef<HTMLDivElement>(null);
+  const widgetId = useRef<string | null>(null);
+  const startedAt = useRef(Date.now());
+
+  // Load hCaptcha once the form is on screen (only when Web3Forms is connected).
+  const formVisible = state.kind !== "sent";
+  useEffect(() => {
+    if (!ACCESS_KEY || !formVisible) return;
+    startedAt.current = Date.now();
+    const mount = () => {
+      if (!window.hcaptcha || !captchaRef.current || widgetId.current !== null) return;
+      widgetId.current = window.hcaptcha.render(captchaRef.current, { sitekey: HCAPTCHA_SITEKEY });
+    };
+    if (window.hcaptcha) {
+      mount();
+    } else {
+      window.onSibaleHcaptchaLoad = mount;
+      if (!document.querySelector("script[data-hcaptcha]")) {
+        const script = document.createElement("script");
+        script.src = "https://js.hcaptcha.com/1/api.js?render=explicit&onload=onSibaleHcaptchaLoad";
+        script.async = true;
+        script.defer = true;
+        script.dataset.hcaptcha = "true";
+        document.head.appendChild(script);
+      }
+    }
+    return () => {
+      widgetId.current = null;
+    };
+  }, [formVisible]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -24,8 +91,67 @@ export function InquiryForm() {
       formRef.current?.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
       return;
     }
+    // Honeypot, or filled too fast to be a person: pretend success, send nothing.
+    if (values.website || Date.now() - startedAt.current < MIN_FILL_MS) {
+      formRef.current?.reset();
+      setState({ kind: "sent", delivered: true });
+      return;
+    }
+
+    const wait = lastSent() + COOLDOWN_MS - Date.now();
+    if (wait > 0) {
+      setState({ kind: "error", message: `You just sent an inquiry. Please wait ${Math.ceil(wait / 60000)} minute(s) before sending another.` });
+      return;
+    }
+
+    let captchaToken = "";
+    if (ACCESS_KEY) {
+      captchaToken = widgetId.current !== null ? window.hcaptcha?.getResponse(widgetId.current) ?? "" : "";
+      if (!captchaToken) {
+        setCaptchaError(true);
+        captchaRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+        return;
+      }
+    }
+    setCaptchaError(false);
     setState({ kind: "submitting" });
+
     try {
+      if (ACCESS_KEY) {
+        // Web3Forms' free plan only accepts submissions from the browser.
+        const d = check.data;
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: ACCESS_KEY,
+            botcheck: false,
+            "h-captcha-response": captchaToken,
+            subject: `Inquiry: ${d.topic} · ${d.name}`,
+            from_name: "Sibale Tourism Website",
+            replyto: d.email,
+            Name: d.name,
+            Email: d.email,
+            Topic: d.topic,
+            "Travel dates": d.travelDates ?? "Not given",
+            "Group size": d.groupSize ?? "Not given",
+            Message: d.message,
+          }),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || !json.success) {
+          console.error("[inquiry] Web3Forms", res.status, json);
+          if (widgetId.current !== null) window.hcaptcha?.reset(widgetId.current);
+          setState({ kind: "error", message: "We couldn't send your message just now. Please try again in a few minutes." });
+          return;
+        }
+        markSent();
+        formRef.current?.reset();
+        setState({ kind: "sent", delivered: true });
+        return;
+      }
+
+      // No key: fall back to the site's own endpoint (dev logging or a webhook).
       const res = await fetch("/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -51,7 +177,7 @@ export function InquiryForm() {
         <p className="mt-3 text-muted">
           {state.delivered
             ? "The Municipal Tourism Office will reply by email. Replies may take a few days, as connectivity on the island can be limited."
-            : "Development mode: the inquiry was validated and logged on the server, but not delivered because no delivery endpoint is configured."}
+            : "Development mode: the inquiry was validated and logged on the server, but not delivered because email delivery is not configured. Add NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY to .env.local."}
         </p>
         <button type="button" onClick={() => setState({ kind: "idle" })} className="mt-6 text-sm font-semibold text-pine-900 underline underline-offset-4">
           Send another inquiry
@@ -126,6 +252,17 @@ export function InquiryForm() {
           <input name="website" tabIndex={-1} autoComplete="off" />
         </label>
       </div>
+
+      {ACCESS_KEY && (
+        <div>
+          <div ref={captchaRef} />
+          {captchaError && (
+            <p role="alert" className="mt-1.5 text-sm text-[#b42318]">
+              Please complete the check above so we know you’re not a bot.
+            </p>
+          )}
+        </div>
+      )}
 
       {state.kind === "error" && (
         <p role="alert" className="border-l-2 border-[#b42318] bg-[#fef3f2] p-4 text-sm text-[#7a271a]">

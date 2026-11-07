@@ -1,12 +1,16 @@
 import { NextResponse } from "next/server";
 import { validateInquiry } from "@/lib/inquiry";
 
+export const runtime = "nodejs";
+
 /**
  * Tourism inquiry endpoint.
  *
- * Delivery: set INQUIRY_WEBHOOK_URL (server-side only) to an HTTPS endpoint that
- * accepts JSON — e.g. Formspree, a Make/Zapier webhook, or an LGU email relay.
- * Without it:
+ * The live form sends straight to Web3Forms from the browser when
+ * NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY is set (their free plan does not accept
+ * server-side requests). This route is the fallback: set INQUIRY_WEBHOOK_URL,
+ * an HTTPS endpoint that accepts JSON.
+ * Without either:
  *   - development: the inquiry is logged to the server console and accepted
  *     (`delivered: false`) so the form can be tested end to end;
  *   - production: the request is refused with 503 and a clear message, so
@@ -52,7 +56,7 @@ export async function POST(request: Request) {
   const webhook = process.env.INQUIRY_WEBHOOK_URL;
   if (!webhook) {
     if (process.env.NODE_ENV !== "production") {
-      console.info("[inquiry] (not delivered — INQUIRY_WEBHOOK_URL not set)", data);
+      console.info("[inquiry] (not delivered: no webhook configured)", data);
       return NextResponse.json({ ok: true, delivered: false });
     }
     return NextResponse.json(

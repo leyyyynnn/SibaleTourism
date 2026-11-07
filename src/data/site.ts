@@ -25,7 +25,7 @@ export const officialContacts = {
   head: "Ralf John F. Fedelin",
   email: "ralffedelin@gmail.com",
   address: "Municipality of Concepcion, Romblon",
-  phone: null as string | null,
+  phone: "0964 977 8164" as string | null,
   facebook: null as string | null,
   hours: null as string | null,
 };
@@ -39,6 +39,23 @@ export const directory: { office: string; name: string; email: string }[] = [
   { office: "BFP – Municipal Fire Station", name: "SPO1 Frederick John F. Faminial", email: "concepcionbfp15@gmail.com" },
   { office: "PCG – Concepcion Sub-Station", name: "PO2 Samuel B. Panoy", email: "cgssconcepcion2@gmail.com" },
 ];
+
+/**
+ * Local emergency hotlines, from the Municipality of Concepcion's
+ * "Emergency Hotlines" poster. Facebook links are the poster's short links.
+ */
+export type Hotline = { short: string; name: string; phone: string; facebook: string };
+export const hotlines: Hotline[] = [
+  { short: "MDRRMO", name: "Disaster Risk Reduction and Management Office", phone: "0926 390 6268", facebook: "https://tinyurl.com/sibale-mdrrmo" },
+  { short: "PCG", name: "Philippine Coast Guard, Concepcion Sub-Station", phone: "0945 624 8514", facebook: "https://tinyurl.com/sibale-pcg" },
+  { short: "PNP", name: "Philippine National Police, Municipal Police Station", phone: "0998 598 5884", facebook: "https://tinyurl.com/sibale-pnp" },
+  { short: "RHU", name: "Rural Health Unit", phone: "0956 793 0262", facebook: "https://tinyurl.com/sibale-rhu" },
+  { short: "BFP", name: "Bureau of Fire Protection, Municipal Fire Station", phone: "0999 652 2287", facebook: "https://tinyurl.com/sibale-bfp" },
+  { short: "LGU PIO", name: "Public Information Office", phone: "0964 977 8164", facebook: "https://tinyurl.com/sibale-pio" },
+];
+
+/** "0926 390 6268" → "+639263906268" for tel: links. */
+export const telHref = (phone: string) => `tel:+63${phone.replace(/\D/g, "").replace(/^0/, "")}`;
 
 /** The Philippines' national emergency hotline. */
 export const nationalEmergencyNumber = "911";

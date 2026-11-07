@@ -18,6 +18,11 @@ export const sources = {
     title: "Concepcion Local Government Unit Profile",
     publisher: "LGU Concepcion",
   },
+  emergencyHotlines: {
+    id: "emergencyHotlines",
+    title: "Emergency Hotlines (poster)",
+    publisher: "Municipality of Concepcion, Romblon",
+  },
   cfmfOrdinance: {
     id: "cfmfOrdinance",
     title: "Questions & Answers on the Carbon Footprint Mitigation Fee (Municipal Ordinance No. 2024-12)",

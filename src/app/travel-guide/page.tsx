@@ -4,7 +4,7 @@ import { ArrowRight } from "@/components/Icons";
 import { ButtonLink, Notice, PageHeader, SourceList } from "@/components/ui";
 import { itineraries } from "@/data/itineraries";
 import { boatNote, mitigationFees, route, routeEdition, tripCost } from "@/data/route";
-import { directory, nationalEmergencyNumber } from "@/data/site";
+import { EmergencyHotlines } from "@/components/EmergencyHotlines";
 import { stays } from "@/data/stays";
 
 export const metadata: Metadata = {
@@ -266,23 +266,10 @@ export default function TravelGuidePage() {
                 </div>
               ))}
             </div>
-            <p className="mt-6 text-sm text-muted">
-              Emergency (nationwide):{" "}
-              <a href={`tel:${nationalEmergencyNumber}`} className="font-semibold text-pine-900">
-                {nationalEmergencyNumber}
-              </a>
-              .
-            </p>
-            <ul className="mt-6 grid gap-px bg-pine-900/10 sm:grid-cols-2">
-              {directory.slice(1).map((d) => (
-                <li key={d.office} className="bg-cream-50 p-5 text-sm">
-                  <p className="font-semibold text-pine-900">{d.office}</p>
-                  <a href={`mailto:${d.email}`} className="mt-1 inline-block break-all text-muted underline decoration-pine-900/20 underline-offset-4 hover:text-pine-900">
-                    {d.email}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <h3 className="mt-12 text-xl font-semibold text-pine-900">Emergency hotlines</h3>
+            <div className="mt-4">
+              <EmergencyHotlines columns={3} />
+            </div>
           </section>
 
           <section id="itineraries" aria-labelledby="h-itin" className="scroll-mt-28">
@@ -395,7 +382,7 @@ export default function TravelGuidePage() {
                 <ButtonLink href="/contact">Contact the tourism office</ButtonLink>
               </div>
             </div>
-            <SourceList ids={["sibaleTourismRoute", "lguProfile", "cvoAttractions"]} />
+            <SourceList ids={["sibaleTourismRoute", "lguProfile", "cvoAttractions", "emergencyHotlines"]} />
           </section>
         </div>
       </div>
