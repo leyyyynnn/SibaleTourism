@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "@/components/Icons";
 import { ButtonLink, Notice, PageHeader, SourceList } from "@/components/ui";
@@ -7,11 +8,12 @@ import { boatNote, mitigationFees, route, routeEdition, tripCost } from "@/data/
 import { EmergencyHotlines } from "@/components/EmergencyHotlines";
 import { stays } from "@/data/stays";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Travel Guide",
   description:
     "How to get to Sibale (Concepcion, Romblon) from Metro Manila: bus, RoRo, van and the 10:00 AM motorboat from Recodo Port, with fares, the mitigation fee, where to stay and what to bring.",
-};
+  path: "/travel-guide",
+});
 
 const toc = [
   { id: "getting-there", label: "Getting there" },

@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { DestinationCard } from "@/components/DestinationCard";
 import { ArrowRight, Boat, Leaf, Wave } from "@/components/Icons";
+import { JsonLd } from "@/components/JsonLd";
 import { MapExplorer } from "@/components/MapExplorer";
 import { Reveal } from "@/components/Reveal";
 import { ButtonLink, Notice, PhotoSlot, SectionHeading, TextLink } from "@/components/ui";
@@ -12,6 +14,22 @@ import { galleryImages } from "@/data/gallery";
 import { itineraries } from "@/data/itineraries";
 import { site } from "@/data/site";
 import { stays } from "@/data/stays";
+import { absoluteUrl, pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({ description: site.description, path: "/" });
+
+const destinationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  name: "Sibale Island (Concepcion, Romblon)",
+  alternateName: ["Maestro de Campo Island", "Concepcion, Romblon"],
+  description: site.description,
+  url: absoluteUrl("/"),
+  image: absoluteUrl("/images/og-sibale.jpg"),
+  touristType: ["Beach lovers", "Divers", "Hikers", "Nature travellers"],
+  address: { "@type": "PostalAddress", addressLocality: "Concepcion", addressRegion: "Romblon", addressCountry: "PH" },
+  includesAttraction: featuredDestinations.map((d) => ({ "@type": "TouristAttraction", name: d.name, url: absoluteUrl(`/destinations/${d.slug}`) })),
+};
 
 export default function HomePage() {
   const [lead, ...rest] = featuredDestinations;
@@ -19,6 +37,7 @@ export default function HomePage() {
   const below = rest.slice(2, 5);
   return (
     <>
+      <JsonLd data={destinationJsonLd} />
       <Hero />
       <Intro />
 

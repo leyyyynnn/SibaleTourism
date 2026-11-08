@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ButtonLink, Notice, PageHeader, SourceList } from "@/components/ui";
 import { mitigationFees } from "@/data/route";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Carbon Footprint Mitigation Fee",
   description:
     "Visitor guide to Concepcion, Romblon’s Carbon Footprint Mitigation Fee (Municipal Ordinance No. 2024-12): who pays, how much, where to pay, penalties and how the fees are used.",
-};
+  path: "/carbon-footprint-fee",
+});
 
 const penalties = [
   { offence: "First offence", fine: "₱1,000" },

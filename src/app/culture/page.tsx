@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { ButtonLink, Notice, PageHeader, PhotoSlot, SourceList } from "@/components/ui";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Culture & Local Life",
   description:
     "The Sibalenhon of Concepcion, Romblon: Asi roots in Banton, the feast of the Immaculate Concepcion every 8 December, and life from the coconut groves and the sea.",
-};
+  path: "/culture",
+});
 
 export default function CulturePage() {
   return (

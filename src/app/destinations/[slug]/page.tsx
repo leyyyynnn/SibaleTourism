@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { absoluteUrl, pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DestinationCard } from "@/components/DestinationCard";
@@ -15,11 +17,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const d = getDestination(slug);
   if (!d) return {};
-  return {
+  const img = d.images[0];
+  return pageMetadata({
     title: d.name,
     description: d.summary,
-    openGraph: d.images[0] ? { images: [{ url: d.images[0].src }] } : undefined,
-  };
+    path: `/destinations/${d.slug}`,
+    type: "article",
+    image: img ? { url: img.src, width: img.width, height: img.height, alt: img.alt } : undefined,
+  });
 }
 
 export default async function DestinationPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -30,8 +35,23 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
   const related = destinations.filter((x) => x.slug !== d.slug && x.category === d.category).slice(0, 3);
   const others = related.length ? related : destinations.filter((x) => x.slug !== d.slug).slice(0, 3);
 
+  const attractionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    name: d.name,
+    ...(d.altNames?.length ? { alternateName: d.altNames } : {}),
+    description: d.summary,
+    url: absoluteUrl(`/destinations/${d.slug}`),
+    ...(d.images.length ? { image: d.images.map((i) => absoluteUrl(i.src)) } : {}),
+    // Only exact (gazetteer) coordinates are published; approximate pins are left out.
+    ...(d.coordinates?.precision === "gazetteer" ? { geo: { "@type": "GeoCoordinates", latitude: d.coordinates.lat, longitude: d.coordinates.lng } } : {}),
+    containedInPlace: { "@type": "Place", name: "Concepcion, Romblon, Philippines" },
+    isAccessibleForFree: true,
+  };
+
   return (
     <article>
+      <JsonLd data={attractionJsonLd} />
       <header className="relative isolate overflow-hidden bg-pine-950 text-white">
         <div className="grid min-h-[34rem] lg:grid-cols-2">
           <div className="flex flex-col justify-end px-5 pt-36 pb-14 md:px-10 lg:pr-12 lg:pb-20 lg:pl-[max(2.5rem,calc((100vw-88rem)/2+2.5rem))]">

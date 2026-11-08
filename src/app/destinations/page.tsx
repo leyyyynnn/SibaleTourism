@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { DestinationExplorer } from "@/components/DestinationExplorer";
 import { MapExplorer } from "@/components/MapExplorer";
 import { PageHeader, SectionHeading } from "@/components/ui";
 import { destinations } from "@/data/destinations";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Destinations",
-  description: "Beaches, viewpoints, waterfalls, reefs and heritage sites on Sibale Island, Concepcion, Romblon.",
-};
+  description:
+    "Beaches, viewpoints, waterfalls, reefs and heritage sites on Sibale Island, Concepcion, Romblon.",
+  path: "/destinations",
+});
 
 export default async function DestinationsPage({
   searchParams,

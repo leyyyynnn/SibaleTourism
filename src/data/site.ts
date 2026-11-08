@@ -4,15 +4,30 @@
  * form works on any host, even without environment variables. An
  * NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY environment variable, if set, takes priority.
  */
-export const WEB3FORMS_ACCESS_KEY = "0168587a-8f18-4758-b6a6-dfe2291d112e";
+export const WEB3FORMS_ACCESS_KEY = "";
+
+/**
+ * The live address of the website, e.g. "https://sibaletourism.com" (no slash at
+ * the end). Used for canonical links, the sitemap, robots.txt and link previews.
+ * A NEXT_PUBLIC_SITE_URL environment variable, if set, takes priority.
+ */
+export const PRODUCTION_URL = "https://visitsibale.com";
+
+/**
+ * Google Search Console "HTML tag" verification code: only the content="..." value.
+ * Leave empty if you verify with a DNS record instead (recommended on Hostinger).
+ */
+export const GOOGLE_SITE_VERIFICATION = "X1ZCgqhB1YS8T2euT8_LWbtJMKW2CMnHgwwTb85YEk0";
+
+const resolvedUrl = (process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_URL || "http://localhost:3000").replace(/\/+$/, "");
 
 export const site = {
   name: "Sibale Tourism",
   shortName: "Sibale",
   tagline: "Your somewhere is here",
   description:
-    "Sibale Tourism, the tourism guide to Concepcion, Romblon: Sibale Island in the Verde Island Passage. Cliffs, ridges, white-sand beaches, 15 dive sites and island life.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+    "Sibale Tourism, the tourism guide to Concepcion, Romblon: Sibale Island in the Verde Island Passage. Sheer cliffs, tranquil white-sand beaches, spectacular dive sites and island life.",
+  url: resolvedUrl,
   coordinatesLabel: "12°55′ N · 121°43′ E",
 };
 

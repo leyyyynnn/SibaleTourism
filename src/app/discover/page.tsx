@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Reveal } from "@/components/Reveal";
 import { ButtonLink, Notice, PageHeader, PhotoSlot, SourceList } from "@/components/ui";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Discover Sibale",
   description:
     "About Concepcion, Romblon — Sibale Island: its nine barangays, history from 1570 to today, the municipality’s vision, and its place in the Verde Island Passage.",
-};
+  path: "/discover",
+});
 
 const barangays = ["Bachawan", "Calabasahan", "Dalajican", "Masadya", "Masudsud", "Poblacion", "Sampong", "San Pedro (Agbatang)", "San Vicente"];
 

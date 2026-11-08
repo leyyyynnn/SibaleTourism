@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "@/components/Icons";
 import { Reveal } from "@/components/Reveal";
 import { ButtonLink, PageHeader, PhotoSlot, SourceList } from "@/components/ui";
 import { experiences } from "@/data/experiences";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Activities",
-  description: "Swimming, camping, hiking, scuba diving and freediving on Sibale Island, Concepcion, Romblon.",
-};
+  description:
+    "Swimming, camping, hiking, scuba diving and freediving on Sibale Island, Concepcion, Romblon.",
+  path: "/experiences",
+});
 
 export default function ExperiencesPage() {
   return (

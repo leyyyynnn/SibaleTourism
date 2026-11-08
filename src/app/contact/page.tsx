@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Mail, Phone } from "@/components/Icons";
 import { EmergencyHotlines } from "@/components/EmergencyHotlines";
 import { InquiryForm } from "@/components/InquiryForm";
 import { PageHeader } from "@/components/ui";
 import { directory, officialContacts, telHref } from "@/data/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
     "Contact the Municipal Tourism Office of Concepcion, Romblon about boats, guides, accommodation and visiting Sibale Island.",
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   const c = officialContacts;

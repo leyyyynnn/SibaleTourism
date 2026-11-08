@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Gallery } from "@/components/Gallery";
 import { ButtonLink, PageHeader } from "@/components/ui";
 import { galleryImages } from "@/data/gallery";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Gallery",
-  description: "Photographs of Concepcion, Romblon: Sibale Island's bay, shoreline, hills and everyday life.",
-};
+  description:
+    "Photographs of Concepcion, Romblon: Sibale Island's bay, shoreline, hills and everyday life.",
+  path: "/gallery",
+});
 
 export default function GalleryPage() {
   return (
