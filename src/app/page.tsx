@@ -38,7 +38,7 @@ export default function HomePage() {
 
           <div className="mt-16 grid gap-x-8 gap-y-16 md:grid-cols-12">
             <Reveal className="md:col-span-7">
-              <DestinationCard destination={lead} aspect="aspect-[4/3] md:aspect-[5/4]" size="lg" sizes="(min-width: 768px) 58vw, 100vw" />
+              <DestinationCard destination={lead} aspect="aspect-[4/3]" size="lg" fill sizes="(min-width: 768px) 58vw, 100vw" />
             </Reveal>
             <div className="grid gap-y-16 md:col-span-5 md:pt-24">
               {rest.slice(0, 2).map((d, i) => (

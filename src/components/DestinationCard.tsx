@@ -16,20 +16,23 @@ export function DestinationCard({
   aspect = "aspect-[4/3]",
   size = "md",
   sizes,
+  fill = false,
 }: {
   destination: Destination;
   aspect?: string;
   size?: "md" | "lg";
   sizes?: string;
+  /** Stretch to the parent's height: the photo grows to fill the extra space (from md up). */
+  fill?: boolean;
 }) {
   return (
-    <article className="group relative">
+    <article className={`group relative ${fill ? "flex h-full flex-col" : ""}`}>
       <PhotoSlot
         image={d.images[0]}
         label={d.name}
         brief={d.photoBrief}
         tone={toneFor[d.category]}
-        className={`${aspect} w-full`}
+        className={`${aspect} w-full ${fill ? "md:aspect-auto md:min-h-[28rem] md:flex-1" : ""}`}
         sizes={sizes}
       />
       <div className="mt-5 flex items-center gap-3 text-xs text-muted">
