@@ -108,10 +108,9 @@ export default function CarbonFootprintFeePage() {
             <div>
               <h2 className="display text-4xl text-pine-900">Where the money goes</h2>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/85">The fees may only be used for:</p>
-              <ul className="mt-4 max-w-2xl space-y-3">
+              <ul className="dot-list mt-4 max-w-2xl space-y-3">
                 {uses.map((u) => (
-                  <li key={u} className="flex gap-3 text-ink/85">
-                    <span className="mt-2.5 h-1 w-3 shrink-0 bg-lime-400" aria-hidden="true" />
+                  <li key={u} className="text-ink/85">
                     {u}
                   </li>
                 ))}

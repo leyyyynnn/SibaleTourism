@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
-import { ArrowRight } from "@/components/Icons";
+import { ArrowRight, Rain, Sun } from "@/components/Icons";
 import { ButtonLink, Notice, PageHeader, SourceList } from "@/components/ui";
 import { itineraries } from "@/data/itineraries";
 import { boatNote, mitigationFees, route, routeEdition, tripCost } from "@/data/route";
@@ -208,17 +208,27 @@ export default function TravelGuidePage() {
             <h2 id="h-when" className="display text-4xl text-pine-900 sm:text-5xl">
               When to go
             </h2>
-            <div className="mt-8 grid gap-8 md:grid-cols-2">
-              <div className="border-t-2 border-lime-400 pt-5">
-                <p className="eyebrow text-pine-700">Drier months</p>
-                <p className="mt-3 leading-relaxed text-muted">
-                  March to May is the most often recommended time, with calmer seas for the crossing and clearer days for the viewpoints.
-                </p>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              <div className="rounded-md bg-lime-300/25 p-6 ring-1 ring-lime-400/50">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="flex items-center gap-2.5 font-semibold text-pine-900">
+                    <Sun size={22} className="text-pine-700" /> Drier months
+                  </p>
+                  <span className="rounded-full bg-pine-900 px-3 py-1 text-xs font-semibold text-lime-300">Best time</span>
+                </div>
+                <p className="display mt-4 text-3xl text-pine-900">March – May</p>
+                <p className="mt-2 leading-relaxed text-ink/80">Calmer seas for the crossing and clearer days for the viewpoints.</p>
               </div>
-              <div className="border-t-2 border-pine-500 pt-5">
-                <p className="eyebrow text-pine-700">Wetter months</p>
-                <p className="mt-3 leading-relaxed text-muted">
-                  Rain peaks from June to September. Expect rougher crossings and possible cancellations, but fuller waterfalls. The island averages about 2,170 mm of rain a year.
+              <div className="rounded-md bg-pine-900 p-6 text-white">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="flex items-center gap-2.5 font-semibold">
+                    <Rain size={22} className="text-lime-300" /> Wetter months
+                  </p>
+                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/85">Expect delays</span>
+                </div>
+                <p className="display mt-4 text-3xl">June – September</p>
+                <p className="mt-2 leading-relaxed text-white/75">
+                  Rain peaks. Rougher crossings and possible cancellations, but fuller waterfalls. The island averages about 2,170 mm of rain a year.
                 </p>
               </div>
             </div>
@@ -231,7 +241,7 @@ export default function TravelGuidePage() {
             <h2 id="h-pack" className="display text-4xl text-pine-900 sm:text-5xl">
               What to bring
             </h2>
-            <ul className="mt-8 grid gap-x-10 gap-y-3 sm:grid-cols-2">
+            <ul className="dot-list mt-8 grid gap-x-10 gap-y-3 sm:grid-cols-2">
               {[
                 "Enough cash for your stay, plus extra",
                 "Water shoes (sea urchins and oysters along the shore)",
@@ -244,8 +254,7 @@ export default function TravelGuidePage() {
                 "A light rain jacket in the wet season",
                 "A bag to carry your rubbish back out",
               ].map((x) => (
-                <li key={x} className="flex gap-3 border-b border-pine-900/10 pb-3 text-ink/85">
-                  <span className="mt-2 h-1 w-3 shrink-0 bg-lime-400" aria-hidden="true" />
+                <li key={x} className="border-b border-pine-900/10 pb-3 text-ink/85">
                   {x}
                 </li>
               ))}

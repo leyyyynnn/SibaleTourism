@@ -28,6 +28,8 @@ export type Destination = {
   category: DestinationCategory;
   /** Location as the LGU describes it (barangay or sitio). */
   location: string | null;
+  /** A few words for cards, e.g. "Near Poblacion". Falls back to nothing on cards. */
+  area?: string;
   summary: string;
   details: string[];
   visitorNotes: string[];
@@ -61,6 +63,7 @@ export const destinations: Destination[] = [
     altNames: ["Bagulayag"],
     category: "Viewpoints",
     location: "About 2 km from the Poblacion",
+    area: "Near Poblacion",
     summary:
       "A sheer, 50-metre rock wall above the sea, crowned with cogon grass and looking out over Banton Pass and the Tablas Strait.",
     details: [
@@ -125,6 +128,7 @@ export const destinations: Destination[] = [
     altNames: ["Tinigban"],
     category: "Heritage",
     location: "Sitio Suyor, Poblacion",
+    area: "Poblacion",
     summary:
       "A rock carved in Spanish times beside a vanished waterfall, and the story behind one of Sibale’s oldest place names.",
     details: [
@@ -149,6 +153,7 @@ export const destinations: Destination[] = [
     altNames: ["Batariya", "Batareya"],
     category: "Nature",
     location: "Entrance to Concepcion Bay",
+    area: "Concepcion Bay",
     summary:
       "The 100-metre sentinel at the mouth of Concepcion Bay, home to coconut crabs, birds and monkeys, and watched over by an image of the Immaculada Concepcion.",
     details: [
@@ -176,6 +181,7 @@ export const destinations: Destination[] = [
     altNames: ["M/V Mactan"],
     category: "Marine",
     location: "Off Masudsud and Masadya",
+    area: "Off Masudsud",
     summary:
       "The wreck of the passenger ship M/V Mactan, lost in 1973 and now a protected dive site alive with fish.",
     details: [
@@ -208,6 +214,7 @@ export const destinations: Destination[] = [
     name: "Coral Cathedral",
     category: "Marine",
     location: "Off Sitio Batwanan, San Vicente",
+    area: "Off San Vicente",
     summary:
       "The most famous of Sibale’s 15 dive sites: a towering coral formation a few hundred metres off Sitio Batwanan.",
     details: [
@@ -271,6 +278,7 @@ export const destinations: Destination[] = [
     altNames: ["Quibrada"],
     category: "Beaches",
     location: "Across the bay from Mount Batariya",
+    area: "Concepcion Bay",
     summary: "Powdery white sand and clear turquoise water facing Mount Batariya across Concepcion Bay.",
     details: [
       "Quebrada is one of Sibale’s sand-and-sea beaches, with powdery white sand, clear blue water, coral reef close to shore and green vegetation behind.",
