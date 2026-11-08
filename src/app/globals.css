@@ -150,3 +150,56 @@
   isolation: isolate;
   z-index: 0;
 }
+
+/* Destination card that stretches to its column's height (homepage lead card).
+   Plain CSS outside the Tailwind layers, so it always applies and wins over the
+   aspect-ratio utility. From 768px the photo grows to fill the extra height. */
+@media (min-width: 768px) {
+  .card-fill {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .card-fill > .card-fill-photo {
+    flex: 1 1 auto;
+    aspect-ratio: auto;
+    min-height: 20rem;
+  }
+}
+
+/* Featured destinations (homepage). Plain CSS so it does not depend on Tailwind
+   generating new classes. Below 768px the three cards simply stack. From 768px:
+   - the lead photo spans rows 1-3 on the left;
+   - right column: Tonggo photo (row 1), Tonggo text (row 2), Guiwanon photo (row 3);
+   - both remaining text blocks share row 4.
+   So Tonggo's photo starts where the lead photo starts, and Guiwanon's photo ends
+   exactly where the lead photo ends. */
+.featured-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 3rem;
+}
+@media (min-width: 768px) {
+  .featured-grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "lead-photo a-photo"
+      "lead-photo a-body"
+      "lead-photo b-photo"
+      "lead-body  b-body";
+    column-gap: 2rem;
+    row-gap: 0;
+  }
+  .featured-grid > .fg-card { display: contents; }
+  .featured-grid .fg-lead > .fg-photo { grid-area: lead-photo; height: 100%; aspect-ratio: auto; min-height: 20rem; }
+  .featured-grid .fg-lead > .fg-body  { grid-area: lead-body; }
+  .featured-grid .fg-a > .fg-photo    { grid-area: a-photo; }
+  .featured-grid .fg-a > .fg-body     { grid-area: a-body; padding-bottom: 2.5rem; }
+  .featured-grid .fg-b > .fg-photo    { grid-area: b-photo; }
+  .featured-grid .fg-b > .fg-body     { grid-area: b-body; }
+  /* With display: contents the article no longer positions the link overlay,
+     so each text block becomes the positioning box instead. */
+  .featured-grid .fg-body { position: relative; }
+}
+

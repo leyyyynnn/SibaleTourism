@@ -10,12 +10,15 @@ export function ButtonLink({
   href,
   children,
   variant = "primary",
+  size = "md",
   className = "",
 }: {
   href: string;
   children: ReactNode;
   /** primary: evergreen on light surfaces · lime: featured action on dark surfaces */
   variant?: "primary" | "lime" | "ghost-light" | "ghost-dark";
+  /** compact: tighter on phones (no arrow) so two buttons fit side by side; normal from sm up. */
+  size?: "md" | "compact";
   className?: string;
 }) {
   const styles = {
@@ -27,10 +30,15 @@ export function ButtonLink({
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 text-sm font-bold transition-colors duration-300 ${styles} ${className}`}
+      className={`group inline-flex items-center justify-center gap-2 rounded-md font-bold transition-colors duration-300 ${
+        size === "compact" ? "px-3 py-3 text-[0.8rem] sm:px-6 sm:py-3.5 sm:text-sm" : "px-6 py-3.5 text-sm"
+      } ${styles} ${className}`}
     >
       {children}
-      <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+      <ArrowRight
+        size={16}
+        className={`transition-transform duration-300 group-hover:translate-x-0.5 ${size === "compact" ? "hidden sm:block" : ""}`}
+      />
     </Link>
   );
 }

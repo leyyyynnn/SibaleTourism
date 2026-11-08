@@ -15,13 +15,15 @@ import { stays } from "@/data/stays";
 
 export default function HomePage() {
   const [lead, ...rest] = featuredDestinations;
+  const side = rest.slice(0, 2);
+  const below = rest.slice(2, 5);
   return (
     <>
       <Hero />
       <Intro />
 
       {/* ---------------- Featured destinations ---------------- */}
-      <section aria-labelledby="destinations-heading" className="py-24 lg:py-32">
+      <section aria-labelledby="destinations-heading" className="py-20 lg:py-28">
         <div className="container-site">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading
@@ -36,18 +38,16 @@ export default function HomePage() {
             <TextLink href="/destinations">All destinations</TextLink>
           </div>
 
-          <div className="mt-16 grid gap-x-8 gap-y-16 md:grid-cols-12">
-            <Reveal className="md:col-span-7">
-              <DestinationCard destination={lead} aspect="aspect-[4/3]" size="lg" fill sizes="(min-width: 768px) 58vw, 100vw" />
-            </Reveal>
-            <div className="grid gap-y-16 md:col-span-5">
-              {rest.slice(0, 2).map((d, i) => (
-                <Reveal key={d.slug} delay={i * 120}>
-                  <DestinationCard destination={d} aspect="aspect-[16/10]" sizes="(min-width: 768px) 40vw, 100vw" />
-                </Reveal>
-              ))}
-            </div>
-            {rest.slice(2, 5).map((d, i) => (
+          {/* Photo edges line up: see .featured-grid in globals.css */}
+          <div className="featured-grid mt-12">
+            <DestinationCard destination={lead} size="lg" area="lead" sizes="(min-width: 768px) 58vw, 100vw" />
+            {side.map((d, i) => (
+              <DestinationCard key={d.slug} destination={d} area={i === 0 ? "a" : "b"} aspect="aspect-[16/10]" sizes="(min-width: 768px) 40vw, 100vw" />
+            ))}
+          </div>
+
+          <div className="mt-16 grid gap-x-8 gap-y-12 md:grid-cols-12">
+            {below.map((d, i) => (
               <Reveal key={d.slug} delay={i * 120} className="md:col-span-4">
                 <DestinationCard destination={d} aspect="aspect-[4/3]" sizes="(min-width: 768px) 33vw, 100vw" />
               </Reveal>
@@ -79,11 +79,11 @@ export default function HomePage() {
                   Dive the towering Coral Cathedral off San Vicente, or the wreck of the M/V Mactan, lost in 1973 and now a protected reef full of fish.
                 </p>
               </div>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <ButtonLink href="/destinations/coral-cathedral" variant="lime">
+              <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+                <ButtonLink href="/destinations/coral-cathedral" variant="lime" size="compact">
                   Coral Cathedral
                 </ButtonLink>
-                <ButtonLink href="/destinations/mactan-shipwreck" variant="ghost-light">
+                <ButtonLink href="/destinations/mactan-shipwreck" variant="ghost-light" size="compact">
                   Mactan Shipwreck
                 </ButtonLink>
               </div>
