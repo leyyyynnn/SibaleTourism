@@ -43,11 +43,17 @@ export function DestinationCard({
         sizes={sizes}
       />
       <div className={area ? "fg-body" : ""}>
-        <div className="mt-5 flex items-center gap-3 text-xs text-muted">
+        <p className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1">
           <span className="eyebrow text-pine-700">{d.category}</span>
-          <span aria-hidden="true" className="h-px w-6 shrink-0 bg-pine-900/20" />
-          <span className="truncate">{d.location ?? "Location to be confirmed"}</span>
-        </div>
+          {d.area && (
+            <>
+              <span aria-hidden="true" className="text-pine-900/30">
+                ·
+              </span>
+              <span className="text-xs text-muted">{d.area}</span>
+            </>
+          )}
+        </p>
         <h3
           className={`display mt-3 text-pine-900 ${
             size === "lg" ? "text-4xl lg:text-[2.75rem]" : "text-[1.75rem]"

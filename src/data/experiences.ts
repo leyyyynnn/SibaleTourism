@@ -61,7 +61,7 @@ export const experiences: Experience[] = [
   },
   {
     slug: "scuba-diving",
-    title: "Fifteen dive sites in the Verde Island Passage",
+    title: "Spectacular dive sites in the Verde Island Passage",
     kicker: "Scuba diving",
     description:
       "Sibale lies within the Verde Island Passage Marine Corridor, a globally recognised marine biodiversity hotspot. Dive the towering Coral Cathedral off San Vicente, or the wreck of the M/V Mactan, now home to schools of fish. The Poblacion is the island’s gateway for dive tourism.",

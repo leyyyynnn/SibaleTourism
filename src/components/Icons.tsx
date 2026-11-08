@@ -105,3 +105,20 @@ export const Expand = (p: IconProps) => (
     <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
   </svg>
 );
+export const Sun = (p: IconProps) => (
+  <svg {...base(p)}>
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" />
+  </svg>
+);
+export const Rain = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M7 15a4.5 4.5 0 0 1-.6-8.96A5.5 5.5 0 0 1 17 7.5a3.75 3.75 0 0 1 .5 7.47" />
+    <path d="M9 17.5 8 20M13 17.5 12 20M17 17.5 16 20" />
+  </svg>
+);
+export const ArrowUp = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M12 19V5M6 11l6-6 6 6" />
+  </svg>
+);

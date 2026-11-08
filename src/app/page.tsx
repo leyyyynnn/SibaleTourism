@@ -181,10 +181,12 @@ export default function HomePage() {
           </div>
           <ol className="content-start divide-y divide-pine-900/10 border-y border-pine-900/10 lg:col-span-6 lg:col-start-7">
             {stays.map((s, i) => (
-              <li key={s.name} className="grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 py-5">
-                <span className="text-sm font-semibold tabular-nums text-muted">{String(i + 1).padStart(2, "0")}</span>
-                <span className="text-lg font-semibold text-pine-900">{s.name}</span>
-                <span className="eyebrow text-muted">{s.type}</span>
+              <li key={s.name} className="flex items-baseline gap-4 py-5">
+                <span className="w-7 shrink-0 text-sm font-semibold tabular-nums text-muted">{String(i + 1).padStart(2, "0")}</span>
+                <span className="flex min-w-0 flex-1 flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                  <span className="text-lg font-semibold text-pine-900">{s.name}</span>
+                  <span className="text-xs font-semibold tracking-[0.18em] text-muted uppercase">{s.type}</span>
+                </span>
               </li>
             ))}
           </ol>

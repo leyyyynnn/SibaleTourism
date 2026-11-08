@@ -56,12 +56,9 @@ export default function ExperiencesPage() {
                 </ul>
 
                 <p className="eyebrow mt-8 text-muted">Arrangements</p>
-                <ul className="mt-3 space-y-1.5 text-sm text-ink/80">
+                <ul className="dot-list mt-3 space-y-1.5 text-sm leading-relaxed text-ink/80">
                   {e.arrangements.map((a) => (
-                    <li key={a} className="flex gap-2">
-                      <span className="mt-2 h-1 w-3 shrink-0 bg-lime-400" aria-hidden="true" />
-                      {a}
-                    </li>
+                    <li key={a}>{a}</li>
                   ))}
                 </ul>
               </Reveal>

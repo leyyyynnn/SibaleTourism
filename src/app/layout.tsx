@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Montserrat } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { BackToTop } from "@/components/BackToTop";
 import { JsonLd } from "@/components/JsonLd";
 import { GOOGLE_SITE_VERIFICATION, officialContacts, site } from "@/data/site";
 import "./globals.css";
@@ -106,8 +107,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <JsonLd data={siteJsonLd} />
         <SiteHeader />
-        <main id="main">{children}</main>
+        <main id="main" tabIndex={-1} className="outline-none">
+          {children}
+        </main>
         <SiteFooter />
+        <BackToTop />
       </body>
     </html>
   );
