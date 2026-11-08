@@ -4,7 +4,7 @@
  * form works on any host, even without environment variables. An
  * NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY environment variable, if set, takes priority.
  */
-export const WEB3FORMS_ACCESS_KEY = "";
+export const WEB3FORMS_ACCESS_KEY = "0168587a-8f18-4758-b6a6-dfe2291d112e";
 
 /**
  * The live address of the website, e.g. "https://sibaletourism.com" (no slash at
