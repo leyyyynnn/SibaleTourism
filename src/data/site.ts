@@ -1,3 +1,11 @@
+/**
+ * Web3Forms access key for the inquiry form. Safe to publish: it can only send
+ * email to the inbox it was created for. Paste the key between the quotes so the
+ * form works on any host, even without environment variables. An
+ * NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY environment variable, if set, takes priority.
+ */
+export const WEB3FORMS_ACCESS_KEY = "0168587a-8f18-4758-b6a6-dfe2291d112e";
+
 export const site = {
   name: "Sibale Tourism",
   shortName: "Sibale",

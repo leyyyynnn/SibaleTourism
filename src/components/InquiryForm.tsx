@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { WEB3FORMS_ACCESS_KEY } from "@/data/site";
 import { inquiryTopics, validateInquiry, type FieldErrors } from "@/lib/inquiry";
 
 type State =
@@ -11,7 +12,7 @@ type State =
 
 /** Web3Forms' shared hCaptcha site key for free plans (docs.web3forms.com). */
 const HCAPTCHA_SITEKEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
-const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY;
 /** Forms filled faster than this are almost certainly bots. */
 const MIN_FILL_MS = 4000;
 /** One inquiry per browser per this many milliseconds. */
@@ -177,7 +178,7 @@ export function InquiryForm() {
         <p className="mt-3 text-muted">
           {state.delivered
             ? "The Municipal Tourism Office will reply by email. Replies may take a few days, as connectivity on the island can be limited."
-            : "Development mode: the inquiry was validated and logged on the server, but not delivered because email delivery is not configured. Add NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY to .env.local."}
+            : "Development mode: the inquiry was validated and logged on the server, but not delivered because email delivery is not configured. Add the Web3Forms key in src/data/site.ts or .env.local."}
         </p>
         <button type="button" onClick={() => setState({ kind: "idle" })} className="mt-6 text-sm font-semibold text-pine-900 underline underline-offset-4">
           Send another inquiry

@@ -40,16 +40,16 @@ export default function HomePage() {
             <Reveal className="md:col-span-7">
               <DestinationCard destination={lead} aspect="aspect-[4/3]" size="lg" fill sizes="(min-width: 768px) 58vw, 100vw" />
             </Reveal>
-            <div className="grid gap-y-16 md:col-span-5 md:pt-24">
+            <div className="grid gap-y-16 md:col-span-5">
               {rest.slice(0, 2).map((d, i) => (
                 <Reveal key={d.slug} delay={i * 120}>
-                  <DestinationCard destination={d} aspect={i === 0 ? "aspect-[4/3]" : "aspect-[16/10]"} sizes="(min-width: 768px) 40vw, 100vw" />
+                  <DestinationCard destination={d} aspect="aspect-[16/10]" sizes="(min-width: 768px) 40vw, 100vw" />
                 </Reveal>
               ))}
             </div>
             {rest.slice(2, 5).map((d, i) => (
-              <Reveal key={d.slug} delay={i * 120} className={`md:col-span-4 ${i === 1 ? "md:mt-16" : ""}`}>
-                <DestinationCard destination={d} aspect={i === 1 ? "aspect-[16/10] md:aspect-[3/4]" : "aspect-[16/10] md:aspect-[4/5]"} sizes="(min-width: 768px) 33vw, 100vw" />
+              <Reveal key={d.slug} delay={i * 120} className="md:col-span-4">
+                <DestinationCard destination={d} aspect="aspect-[4/3]" sizes="(min-width: 768px) 33vw, 100vw" />
               </Reveal>
             ))}
           </div>
