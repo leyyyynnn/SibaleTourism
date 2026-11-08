@@ -158,9 +158,9 @@ export default function CarbonFootprintFeePage() {
                 </Notice>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <ButtonLink href="/travel-guide#getting-there">Plan your trip</ButtonLink>
-                <ButtonLink href="/contact" variant="ghost-dark">
+              <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+                <ButtonLink size="compact" href="/travel-guide#getting-there">Plan your trip</ButtonLink>
+                <ButtonLink size="compact" href="/contact" variant="ghost-dark">
                   Ask a question
                 </ButtonLink>
               </div>

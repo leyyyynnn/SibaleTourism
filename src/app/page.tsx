@@ -468,11 +468,11 @@ function PlanYourVisit() {
             Two motorboats, Falcon Dos and Arcem Liner, take turns on alternate days, and trips are cancelled in bad weather. Confirm with the Municipal Tourism Office, keep a spare day, and bring enough cash: there is no bank or ATM on the island. A <Link href="/carbon-footprint-fee" className="font-semibold underline underline-offset-2">Carbon Footprint Mitigation Fee</Link> (₱50 for local tourists, ₱100 for foreign tourists) is collected on arrival.
           </Notice>
         </div>
-        <div className="mt-10 flex flex-wrap gap-4">
-          <ButtonLink href="/travel-guide" variant="lime">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4">
+          <ButtonLink size="compact" href="/travel-guide" variant="lime">
             Full travel guide
           </ButtonLink>
-          <ButtonLink href="/contact" variant="ghost-light">
+          <ButtonLink size="compact" href="/contact" variant="ghost-light">
             Ask about boats
           </ButtonLink>
         </div>
