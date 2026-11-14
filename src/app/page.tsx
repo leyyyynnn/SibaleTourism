@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { DestinationCard } from "@/components/DestinationCard";
-import { ArrowRight, Boat, Leaf, Wave } from "@/components/Icons";
+import { ArrowRight, CarryBag, Fish, LifeRing, LocalHome, Mask, Turtle } from "@/components/Icons";
 import { JsonLd } from "@/components/JsonLd";
 import { MapExplorer } from "@/components/MapExplorer";
 import { Reveal } from "@/components/Reveal";
@@ -331,12 +331,12 @@ const teaserSrcs = [
 const teaser = teaserSrcs.map((src) => galleryImages.find((g) => g.src === src)!).filter(Boolean);
 
 const careRules = [
-  { icon: Wave, title: "Float, don't stand", text: "Never stand on, touch or collect coral, shells or marine life when swimming or diving." },
-  { icon: Leaf, title: "Give turtles space", text: "Tonggo is a pawikan nesting sanctuary. Never touch turtles, eggs or hatchlings, or use lights at night." },
-  { icon: Boat, title: "Respect the sea", text: "Use reputable boat operators, wear a life jacket and postpone trips when the sea is rough." },
-  { icon: Wave, title: "Fish sanctuaries", text: "Maisuting Baybay is a protected fish sanctuary, and commercial fishing is banned in municipal waters." },
-  { icon: Leaf, title: "Carry it out", text: "Facilities are few. Take every wrapper and bottle back to the Poblacion with you." },
-  { icon: Boat, title: "Spend locally", text: "Stay in homestays, hire local guides and drivers, and eat at family-run carinderias." },
+  { icon: Mask, title: "Float, don't stand", text: "Never stand on, touch or collect coral, shells or marine life when swimming or diving." },
+  { icon: Turtle, title: "Give turtles space", text: "Tonggo is a pawikan nesting sanctuary. Never touch turtles, eggs or hatchlings, or use lights at night." },
+  { icon: LifeRing, title: "Respect the sea", text: "Use reputable boat operators, wear a life jacket and postpone trips when the sea is rough." },
+  { icon: Fish, title: "Fish sanctuaries", text: "Maisuting Baybay is a protected fish sanctuary, and commercial fishing is banned in municipal waters." },
+  { icon: CarryBag, title: "Carry it out", text: "Facilities are few. Take every wrapper and bottle back to the Poblacion with you." },
+  { icon: LocalHome, title: "Spend locally", text: "Stay in homestays, hire local guides and drivers, and eat at family-run carinderias." },
 ];
 
 function Hero() {
@@ -350,22 +350,22 @@ function Hero() {
         sizes="100vw"
         className="-z-20 object-cover object-[30%_50%] md:object-center"
       />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(15,43,37,0.5)_0%,rgba(15,43,37,0.6)_55%,rgba(15,43,37,0.88)_100%)]" />
+      <div className="hero-shade absolute inset-0 -z-10" />
 
       <div className="container-site flex flex-1 flex-col items-center justify-center pt-28 pb-16 text-center">
-        <p className="eyebrow mb-6 text-white/85">Concepcion, Romblon · Philippines</p>
-        <h1 className="font-sans text-[clamp(4rem,20vw,13rem)] leading-[0.9] font-extrabold tracking-[0.08em]">
+        <p className="hero-place text-white/85">Concepcion, Romblon · Philippines</p>
+        <h1 className="hero-title mt-6">
           <span className="sr-only">Discover </span>SIBALE
         </h1>
-        <p className="mt-5 text-[clamp(1.25rem,3vw,2.25rem)] font-normal tracking-wide text-white/95">{site.tagline}.</p>
-        <p className="mt-6 max-w-xl text-[0.98rem] leading-relaxed text-white/75 sm:text-lg">
+        <p className="hero-tagline mt-4 text-white sm:mt-5">{site.tagline}.</p>
+        <p className="mt-6 max-w-xl text-[0.98rem] leading-relaxed text-white/85 sm:text-[1.05rem]">
           Sheer cliffs, tranquil white-sand beaches, and spectacular dive sites in the heart of the Verde Island Passage.
         </p>
-        <div className="mt-10 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center">
-          <ButtonLink href="/destinations" variant="lime">
+        <div className="mt-10 grid w-full max-w-md grid-cols-2 gap-3 sm:flex sm:w-auto sm:max-w-none sm:justify-center sm:gap-4">
+          <ButtonLink href="/destinations" variant="lime" size="compact">
             Explore Destinations
           </ButtonLink>
-          <ButtonLink href="/travel-guide" variant="ghost-light">
+          <ButtonLink href="/travel-guide" variant="ghost-light" size="compact">
             Plan Your Visit
           </ButtonLink>
         </div>

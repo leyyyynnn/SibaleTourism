@@ -122,3 +122,46 @@ export const ArrowUp = (p: IconProps) => (
     <path d="M12 19V5M6 11l6-6 6 6" />
   </svg>
 );
+/* Responsible-travel icons */
+export const Mask = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M3 10.5A2.5 2.5 0 0 1 5.5 8h11A2.5 2.5 0 0 1 19 10.5v1.5a3 3 0 0 1-3 3h-2.2l-1.3-1.6h-1L10.2 15H6a3 3 0 0 1-3-3z" />
+    <path d="M21.5 5v8.5a3 3 0 0 1-3 3H17" />
+  </svg>
+);
+export const Turtle = (p: IconProps) => (
+  <svg {...base(p)}>
+    <ellipse cx="12" cy="12.5" rx="5" ry="6" />
+    <path d="M12 6.5V4.2" />
+    <circle cx="12" cy="3.4" r="1.4" />
+    <path d="M7.6 9.6 4.5 7.8M16.4 9.6l3.1-1.8M7.6 15.4 4.8 17.6M16.4 15.4l2.8 2.2M12 18.5V21" />
+    <path d="M9 10.5h6M8.6 14.5h6.8" />
+  </svg>
+);
+export const LifeRing = (p: IconProps) => (
+  <svg {...base(p)}>
+    <circle cx="12" cy="12" r="8.5" />
+    <circle cx="12" cy="12" r="3.8" />
+    <path d="m6 6 3.3 3.3M18 6l-3.3 3.3M6 18l3.3-3.3M18 18l-3.3-3.3" />
+  </svg>
+);
+export const Fish = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M2.5 12c3.2-4.6 9.3-5.4 13.3-1.6L20.5 7v10l-4.7-3.4C11.8 17.4 5.7 16.6 2.5 12Z" />
+    <circle cx="7.6" cy="11.2" r="0.6" fill="currentColor" />
+  </svg>
+);
+export const CarryBag = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M5 8.5h14l-1.1 11.5H6.1z" />
+    <path d="M9 8.5V6.8a3 3 0 0 1 6 0v1.7" />
+    <path d="m9.5 14.5 1.8 1.8 3.3-3.6" />
+  </svg>
+);
+export const LocalHome = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M3.5 11.2 12 4.2l8.5 7" />
+    <path d="M5.8 9.4V20h12.4V9.4" />
+    <path d="M12 17.6s-3.1-1.9-3.1-3.8a1.6 1.6 0 0 1 3.1-.7 1.6 1.6 0 0 1 3.1.7c0 1.9-3.1 3.8-3.1 3.8Z" />
+  </svg>
+);
